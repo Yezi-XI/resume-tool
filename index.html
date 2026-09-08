@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="zh-CN" data-page-node-id="j9b91MbKQEBJDQw9hPVcWX">
+<head data-page-node-id="UrIKplfzNwbtf0xEneQReE">
+<meta charset="UTF-8" data-page-node-id="J0wJXtzTSAB0LqZFGKo2ys">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="I7Rf4zrcxrf1QRjDgZX8UI">
 <title>简历制作工具</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -126,47 +126,47 @@ input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(
 .toggle-btn.on{background:var(--accent);color:#fff}.style-slider{-webkit-appearance:none;appearance:none;height:6px;background:var(--border);border-radius:3px;outline:none}.style-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .1s}.style-slider::-webkit-slider-thumb:active{transform:scale(1.15)}@media print{body{background:#fff}.app{display:block}.side,.ptb{display:none!important}.main{background:#fff;overflow:visible}.pc{padding:0;overflow:visible}.pview{box-shadow:none!important;width:100%;min-height:auto;padding:0}}
 </style>
 </head>
-<body>
-<div class="app">
-  <aside class="side">
-    <div class="tabs" id="tabs">
-      <button class="tab on" data-tab="info">个人信息</button>
-      <button class="tab" data-tab="sections">内容模块</button>
-      <button class="tab" data-tab="versions">版本管理</button>
-      <button class="tab" data-tab="import">导入</button>
-      <button class="tab" data-tab="style">样式</button>
+<body data-page-node-id="n6x09zf1tcdOpvG4gwHZMj">
+<div class="app" data-page-node-id="dmTzoaUy7zUtBlFekUTbA4">
+  <aside class="side" data-page-node-id="FKKhaYu8iUFdRsNv5d3UnO">
+    <div class="tabs" id="tabs" data-page-node-id="H2f5cACZmxN9fbgNQGbdAS">
+      <button class="tab on" data-tab="info" data-page-node-id="LgAf6E7IhVEMGzWbVhFLCo">个人信息</button>
+      <button class="tab" data-tab="sections" data-page-node-id="mxeeqpXTYo3iNqKP6wkPyv">内容模块</button>
+      <button class="tab" data-tab="versions" data-page-node-id="oQpSOEpQrmE0aGcgxlsZ0b">版本管理</button>
+      <button class="tab" data-tab="import" data-page-node-id="VwlXQBDCLLh6r1ADtDuN2h">导入</button>
+      <button class="tab" data-tab="style" data-page-node-id="HsckuR9EwRaxGP57aFopMB">样式</button>
     </div>
-    <div class="body" id="editor-body"></div>
-    <div class="foot">
-      <div style="display:flex;flex-direction:column;gap:8px;width:100%">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <span class="dlabel">排版密度</span>
-          <div class="dbtns" id="density-btns"></div>
+    <div class="body" id="editor-body" data-page-node-id="9I6LUfd6VnL5vgBAjPhXOl"></div>
+    <div class="foot" data-page-node-id="XjcF9BsWFiD05ZdijHrSJx">
+      <div style="display:flex;flex-direction:column;gap:8px;width:100%" data-page-node-id="y2UA7ZN5E0uXBOqx35PmUA">
+        <div style="display:flex;align-items:center;justify-content:space-between" data-page-node-id="E7Q0QRwsfgFgkxHHnm4juy">
+          <span class="dlabel" data-page-node-id="zupC4Nb0NTjF2QtPDKjMme">排版密度</span>
+          <div class="dbtns" id="density-btns" data-page-node-id="Cynhnzv59pPcZ7mIVhVKFW"></div>
         </div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <span class="dlabel" style="white-space:nowrap">字间距</span>
-          <input type="number" class="sec-spacing-inp" id="global-ls" value="0" step="0.5" min="-5" max="20" style="width:52px">
-          <span class="dlabel" style="white-space:nowrap">行间距</span>
-          <input type="number" class="sec-spacing-inp" id="global-lh" value="" step="0.1" min="0.5" max="3" placeholder="默认" style="width:52px">
+        <div style="display:flex;align-items:center;gap:8px" data-page-node-id="3Xor2AAv2JWfH2bKKD7Yla">
+          <span class="dlabel" style="white-space:nowrap" data-page-node-id="W2W4bsMz54HnVxjbbOJvig">字间距</span>
+          <input type="number" class="sec-spacing-inp" id="global-ls" value="0" step="0.5" min="-5" max="20" style="width:52px" data-page-node-id="x9xqPKAwAonrA5yJ6h4rHb">
+          <span class="dlabel" style="white-space:nowrap" data-page-node-id="xDrM6tnhURUzkJixXSRSX7">行间距</span>
+          <input type="number" class="sec-spacing-inp" id="global-lh" value="" step="0.1" min="0.5" max="3" placeholder="默认" style="width:52px" data-page-node-id="tkByvCInHRp34QTdzv2oQr">
         </div>
       </div>
     </div>
   </aside>
-  <main class="main">
-    <div class="ptb">
-      <div style="display:flex;align-items:center;gap:10px">
-        <span class="pt">简历预览</span>
-        <span class="badge" id="version-badge" style="display:none"></span>
+  <main class="main" data-page-node-id="vqDlT6YUyVYIo6rRBFGprE">
+    <div class="ptb" data-page-node-id="8KFnYecDPIp5Q6QtQxq83P">
+      <div style="display:flex;align-items:center;gap:10px" data-page-node-id="25nzeH59jnzt7kPL7FCtYJ">
+        <span class="pt" data-page-node-id="Ox64FrBgALujPqJNs6nlL3">简历预览</span>
+        <span class="badge" id="version-badge" style="display:none" data-page-node-id="MmtqEmUS9YOaG2g8zIjhOe"></span>
       </div>
-      <button class="ebtn" onclick="exportPDF()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+      <button class="ebtn" onclick="exportPDF()" data-page-node-id="L78lRJFbVKiXJVOy6zuC9k">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="4iPpW4cdm9qdAABXOxSaFL"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" data-page-node-id="79t3pqDqGQYqHHOx5Mhwzg"/><polyline points="7 10 12 15 17 10" data-page-node-id="fy2vBdXEhpGrwXSkTHjuoW"/><line x1="12" x2="12" y1="15" y2="3" data-page-node-id="6TnqiHofQD33ezQIWwvfNt"/></svg>
         导出 PDF
       </button>
     </div>
-    <div class="pc" id="preview-container"></div><div class="zoom-ctrl">
-  <button onclick="zoomOut()" title="缩小">−</button>
-  <span class="zoom-val" id="zoom-val" onclick="zoomReset()" title="点击重置">100%</span>
-  <button onclick="zoomIn()" title="放大">+</button>
+    <div class="pc" id="preview-container" data-page-node-id="OEph6yWGqDwvjLfIsmQRXz"></div><div class="zoom-ctrl" data-page-node-id="iGCoPQqVEMP6EXzEgm4qQ7">
+  <button onclick="zoomOut()" title="缩小" data-page-node-id="FhOG9bAaTbfyg9XtO5Vvzy">−</button>
+  <span class="zoom-val" id="zoom-val" onclick="zoomReset()" title="点击重置" data-page-node-id="PN9qNWJn1Zx65FIihUAs0u">100%</span>
+  <button onclick="zoomIn()" title="放大" data-page-node-id="aZ3CG58aNAWTastAtZ4Piw">+</button>
 </div>
   </main>
 </div>
@@ -187,6 +187,11 @@ const I = {
   award: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>',
   eye: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>',
   eyeoff: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>',
+  check: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>',
+  chevron: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg>',
+  star: '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+  diamond: '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 22 12 12 22 2 12"/></svg>',
+  square: '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>',
 };
 
 // ── Data ──
@@ -257,7 +262,8 @@ let styleSettings = {
  titleBgRadiusTL: null, titleBgRadiusTR: null, titleBgRadiusBR: null, titleBgRadiusBL: null,
  titleFontSize: null, titleIconSize: 0, titleIconGap: 6,
  underlineShow: true, underlineThick: 1, underlineColor: '#ddd',
-  itemBullet: 'none', titleBar: 'none', titleBarColor: '#1a1a1a',
+  itemBulletShow: false, itemBullet: 'symbol', itemBulletSymbol: '•', itemBulletIcon: 'check', itemBulletNumFmt: 'dot', itemBulletColor: '#1a1a1a', itemBulletGap: 4,
+  titleBarShow: false, titleBar: 'two', titleBarColor: '#1a1a1a', titleBarW: 4, titleBarH: 16, titleBarGap: 3,
   paraSpacing: 'tight', underlineAlign: 'bottom',
  paraShow: false, paraWidth: 80, paraHeight: 'standard', paraColor: '#1a1a1a', paraSkew: -8,
  paraRadiusTL: 0, paraRadiusTR: 2, paraRadiusBR: 0, paraRadiusBL: 2, paraRadius: 0,
@@ -292,8 +298,8 @@ if (state.itemSubSize == null) state.itemSubSize = null;
 if (state.itemTitleFont == null) state.itemTitleFont = '';
 if (state.itemDateFont == null) state.itemDateFont = '';
 if (state.itemSubFont == null) state.itemSubFont = '';
-try { const raw = localStorage.getItem(STORE_KEY); if (raw) { const parsed = JSON.parse(raw); if (parsed._version === DATA_VERSION) { state = parsed; } } } catch(e) {}
-function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify({ ...state, _version: DATA_VERSION })); } catch(e) {} }
+try { const raw = localStorage.getItem(STORE_KEY); if (raw) { const parsed = JSON.parse(raw); if (parsed._version === DATA_VERSION) { state = parsed; if (parsed.style) { try { Object.assign(styleSettings, parsed.style); } catch(e) {} } } } } catch(e) {}
+function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify({ ...state, style: styleSettings, _version: DATA_VERSION })); } catch(e) {} }
 
   // 清理：移除第一个"其他信息"之后的所有模块
   var otherIdx = -1;
@@ -681,6 +687,44 @@ function br(ss, prefix) {
   return tl + 'px ' + tr + 'px ' + br + 'px ' + bl + 'px';
 }
 
+// ── 段落前缀渲染（符号 / 图标 / 序号）──
+function bulletNumFmt(n, fmt) {
+  if (fmt === 'paren') return n + ')';
+  if (fmt === 'full') return '（' + n + '）';
+  if (fmt === 'circle') {
+    var c = ['①','②','③','④','⑤','⑥','⑦','⑧','⑨','⑩','⑪','⑫','⑬','⑭','⑮','⑯','⑰','⑱','⑲','⑳'];
+    return n <= 20 ? c[n-1] : n + '.';
+  }
+  return n + '.';
+}
+function renderDescBlock(text, counter, extraStyle) {
+  var attrs = { className: 'pidesc' };
+  if (extraStyle) attrs.style = extraStyle;
+  var d = h('div', attrs);
+  var ss = styleSettings;
+  if (!text) return d;
+  if (!ss.itemBulletShow) { d.appendChild(document.createTextNode(text)); return d; }
+  var mode = ss.itemBullet || 'symbol';
+  var gap = (ss.itemBulletGap != null ? ss.itemBulletGap : 4) + 'px';
+  var lines = String(text).split(/\n/);
+  lines.forEach(function(line) {
+    if (!line.trim()) { d.appendChild(h('div', { style:{ height:'0.45em' } })); return; }
+    var row = h('div', { style:{ display:'flex', alignItems:'flex-start' } });
+    var pre;
+    if (mode === 'number') {
+      counter.n++;
+      pre = h('span', { style:{ color: ss.itemBulletColor, flexShrink:'0', marginRight: gap } }, bulletNumFmt(counter.n, ss.itemBulletNumFmt));
+    } else if (mode === 'icon') {
+      pre = h('span', { style:{ color: ss.itemBulletColor, display:'inline-flex', flexShrink:'0', marginRight: gap, marginTop:'2px', lineHeight:'1' }, innerHTML: I[ss.itemBulletIcon] || I.check });
+    } else {
+      pre = h('span', { style:{ color: ss.itemBulletColor, flexShrink:'0', marginRight: gap } }, ss.itemBulletSymbol || '•');
+    }
+    row.appendChild(pre);
+    row.appendChild(h('span', { style:{ flex:'1' } }, line));
+    d.appendChild(row);
+  });
+  return d;
+}
 function renderPreview() {
   const container = document.getElementById('preview-container');
   const resume = getMerged();
@@ -785,6 +829,18 @@ function renderPreview() {
         inner.style.padding = ss.titleBgPadding + 'px';
       }
     }
+    if (ss.titleBarShow) {
+      var tbW = ss.titleBarW != null ? ss.titleBarW : 4;
+      var tbH = ss.titleBarH != null ? ss.titleBarH : 16;
+      var tbGap = ss.titleBarGap != null ? ss.titleBarGap : 3;
+      var tbColor = ss.titleBarColor || '#1a1a1a';
+      var tbWrap = h('span', { style:{ display:'inline-flex', alignItems:'flex-end', gap: tbGap + 'px', flexShrink:'0' } });
+      tbWrap.appendChild(h('span', { style:{ display:'inline-block', width: tbW + 'px', height: tbH + 'px', background: tbColor, borderRadius: '1px' } }));
+      if (ss.titleBar !== 'one') {
+        tbWrap.appendChild(h('span', { style:{ display:'inline-block', width: tbW + 'px', height: Math.max(3, Math.round(tbH * 0.6)) + 'px', background: tbColor, borderRadius: '1px' } }));
+      }
+      inner.appendChild(tbWrap);
+    }
     const iconKey = SECTION_ICONS[sec.type];
     if (iconKey && I[iconKey]) {
       var iconHtml = I[iconKey];
@@ -880,12 +936,13 @@ function renderPreview() {
 
    sdiv.appendChild(h('div', { style: { height: gap + 'px' } }));
 
+   var secNumCounter = { n: 0 };
    if (sec.type === 'other') {
      sec.items.forEach(function(item) {
         const ig = state.itemGap != null ? state.itemGap : cfg.ig;
         const idiv = h('div', { className:'pitem', style:{ marginBottom: ig + 'px' } });
        if (item.title) idiv.appendChild(h('div', { className:'pititle', style:{ marginBottom: (state.contentTitleDescGap||2) + 'px', fontSize: state.contentTitleFontSize ? state.contentTitleFontSize + 'pt' : '' } }, item.title));
-       idiv.appendChild(h('div', { className:'pidesc' }, item.description));
+       idiv.appendChild(renderDescBlock(item.description, secNumCounter));
        sdiv.appendChild(idiv);
      });
    } else {
@@ -908,7 +965,7 @@ function renderPreview() {
        if (item.title) ihd.appendChild(h('div', { className:'pititle', style:{ flex:1, textAlign:'left', fontSize: itSize||(state.contentTitleFontSize ? state.contentTitleFontSize + 'pt' : ''), color: itColor||undefined, fontFamily: itFont||undefined } }, item.title));
        if (item.subtitle) ihd.appendChild(h('div', { className:'pisub', style:{ textAlign:'right', color: isColor||undefined, fontSize: isSize||undefined, fontFamily: isFont||undefined } }, item.subtitle));
       idiv.appendChild(ihd);
-        if (item.description) idiv.appendChild(h('div', { className:'pidesc', style:{ marginTop: (state.contentTitleDescGap||2) + 'px' } }, item.description));
+        if (item.description) idiv.appendChild(renderDescBlock(item.description, secNumCounter, { marginTop: (state.contentTitleDescGap||2) + 'px' }));
        sdiv.appendChild(idiv);
      });
    }
@@ -1054,6 +1111,16 @@ function renderStyle() {
   slider('图标大小', 'titleIconSize', -6, 4, 1, '', function(v) { });
   slider('图标与文字间距', 'titleIconGap', 2, 20, 1, 'px');
 
+  body.appendChild(h('h3', { className:'sh', style:{ marginTop:'16px' } }, '标题前矩形块'));
+  toggle('显示矩形块', 'titleBarShow');
+  if (s.titleBarShow) {
+    select('块数', 'titleBar', [['one','一个'],['two','两个']]);
+    color('颜色', 'titleBarColor');
+    slider('块宽', 'titleBarW', 2, 12, 1, 'px');
+    slider('块高', 'titleBarH', 8, 30, 1, 'px');
+    slider('块间距', 'titleBarGap', 1, 12, 1, 'px');
+  }
+
   body.appendChild(h('h3', { className:'sh', style:{ marginTop:'16px' } }, '标题下划线'));
   toggle('显示整行线', 'underlineShow');
  if (s.underlineShow) {
@@ -1076,6 +1143,21 @@ function renderStyle() {
    slider('统一圆角', 'paraRadius', 0, 10, 1, 'px');
     select('下划线位置', 'underlineAlign', [['top','顶部对齐'],['center','中线对齐'],['bottom','底部对齐']]);
  }
+
+  body.appendChild(h('h3', { className:'sh', style:{ marginTop:'16px' } }, '正文段落前缀'));
+  toggle('段落前缀', 'itemBulletShow');
+  if (s.itemBulletShow) {
+    select('类型', 'itemBullet', [['symbol','符号'],['icon','图标'],['number','序号']], function() { setTimeout(renderStyle, 0); });
+    color('颜色', 'itemBulletColor');
+    slider('与文字间距', 'itemBulletGap', 0, 12, 1, 'px');
+    if (s.itemBullet === 'icon') {
+      select('图标', 'itemBulletIcon', [['check','对勾'],['chevron','右箭头'],['star','星形'],['diamond','菱形'],['square','方块']]);
+    } else if (s.itemBullet === 'number') {
+      select('序号格式', 'itemBulletNumFmt', [['dot','1.'],['paren','1)'],['full','（1）'],['circle','①']]);
+    } else {
+      select('符号', 'itemBulletSymbol', [['•','圆点'],['●','实心圆'],['▪','小方块'],['■','方块'],['◆','实心菱'],['➤','箭头'],['✦','星形']]);
+    }
+  }
 
   body.appendChild(h('h3', { className:'sh', style:{ marginTop:'16px' } }, '照片设置'));
   slider('照片宽度', 'photoWidth', 40, 160, 2, 'px', function(v) { if (s.photoLockRatio && s._photoRatio) { s.photoHeight = Math.round(v / s._photoRatio); } });
