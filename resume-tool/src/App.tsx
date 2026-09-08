@@ -4,11 +4,12 @@ import AppLayout from './components/AppLayout';
 import PersonalInfoEditor from './components/editor/PersonalInfoEditor';
 import SectionEditor from './components/editor/SectionEditor';
 import VersionManager from './components/editor/VersionManager';
+import StyleEditor from './components/editor/StyleEditor';
 import ResumePreview from './components/preview/ResumePreview';
 import type { Density } from './types/resume';
 import './App.css';
 
-type EditorTab = 'info' | 'sections' | 'versions';
+type EditorTab = 'info' | 'sections' | 'versions' | 'style';
 
 const DENSITY_OPTIONS: { value: Density; label: string }[] = [
   { value: 'compact', label: '紧凑' },
@@ -28,6 +29,7 @@ export default function App() {
             {([
               ['info', '个人信息'],
               ['sections', '内容模块'],
+              ['style', '样式'],
               ['versions', '版本管理'],
             ] as [EditorTab, string][]).map(([key, label]) => (
               <button
@@ -43,6 +45,7 @@ export default function App() {
           <div className="editor-body">
             {tab === 'info' && <PersonalInfoEditor />}
             {tab === 'sections' && <SectionEditor />}
+            {tab === 'style' && <StyleEditor />}
             {tab === 'versions' && <VersionManager />}
           </div>
 

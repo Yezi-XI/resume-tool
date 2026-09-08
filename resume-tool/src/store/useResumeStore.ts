@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 import type { PersonalInfo, Section, SectionItem, SectionType, ResumeVersion, Density } from '../types/resume';
+import type { ContentStyle } from '../types/resume';
+import { DEFAULT_CONTENT_STYLE } from '../types/resume';
 import { DEFAULT_RESUME } from '../data/defaults';
 
 let nextId = 100;
@@ -12,6 +14,7 @@ export interface ResumeStore {
   versions: ResumeVersion[];
   activeVersionId: string | null;
   density: Density;
+  contentStyle: ContentStyle;
 
   updatePersonalInfo: (info: Partial<PersonalInfo>) => void;
 
@@ -34,6 +37,7 @@ export interface ResumeStore {
   clearItemOverride: (versionId: string, sectionId: string, itemId: string, field: string) => void;
 
   setDensity: (density: Density) => void;
+  updateContentStyle: (style: Partial<ContentStyle>) => void;
 
   getMergedResume: () => typeof DEFAULT_RESUME;
 }
@@ -50,18 +54,20 @@ function loadState() {
         versions: parsed.versions ?? [],
         activeVersionId: parsed.activeVersionId ?? null,
         density: parsed.density ?? 'normal',
+        contentStyle: parsed.contentStyle ?? DEFAULT_CONTENT_STYLE,
       };
     }
   } catch { /* ignore */ }
   return {
     resume: DEFAULT_RESUME,
     versions: [] as ResumeVersion[],
-    activeVersionId: null as string | null,
-    density: 'normal' as Density,
-  };
+        activeVersionId: null as string | null,
+        density: 'normal' as Density,
+        contentStyle: DEFAULT_CONTENT_STYLE,
+      };
 }
 
-function persist(state: Pick<ResumeStore, 'resume' | 'versions' | 'activeVersionId' | 'density'>) {
+function persist(state: Pick<ResumeStore, 'resume' | 'versions' | 'activeVersionId' | 'density' | 'contentStyle'>) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   } catch { /* ignore */ }
@@ -328,6 +334,14 @@ export const useResumeStore = create<ResumeStore>((set, get) => {
     setDensity: (density) => {
       set((s) => {
         const next = { ...s, density };
+        persist(next);
+        return next;
+      });
+    },
+
+    updateContentStyle: (style) => {
+      set((s) => {
+        const next = { ...s, contentStyle: { ...s.contentStyle, ...style } };
         persist(next);
         return next;
       });

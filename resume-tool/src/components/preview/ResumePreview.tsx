@@ -6,6 +6,7 @@ import ResumeDocument from './ResumeDocument';
 
 export default function ResumePreview() {
   const { getMergedResume, density, activeVersionId, versions } = useResumeStore();
+  const contentStyle = useResumeStore((s) => s.contentStyle);
 
   const mergedResume = useMemo(() => getMergedResume(), [
     // Recompute when store changes; we use a broad dependency
@@ -18,7 +19,7 @@ export default function ResumePreview() {
     ? versions.find((v) => v.id === activeVersionId)
     : null;
 
-  const doc = <ResumeDocument resume={resume} density={density} />;
+  const doc = <ResumeDocument resume={resume} density={density} contentStyle={contentStyle} />;
   const fileName = activeVersion
     ? `简历-${activeVersion.name}.pdf`
     : '简历.pdf';
@@ -59,7 +60,6 @@ export default function ResumePreview() {
             height: '100%',
             border: 'none',
             borderRadius: 4,
-            boxShadow: '0 1px 3px rgba(0,0,0,0.12)',
           }}
           showToolbar={false}
         >

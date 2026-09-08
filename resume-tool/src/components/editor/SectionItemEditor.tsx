@@ -79,7 +79,7 @@ export default function SectionItemEditor({
         </div>
       </div>
       {fields.map(({ key, label, placeholder, area }) => {
-        const value = (item as Record<string, string>)[key] ?? '';
+        const value = (item as unknown as Record<string, string>)[key] ?? '';
         return (
           <div className="form-group" key={key} style={{ marginBottom: 6 }}>
             <label className="form-label">{label}</label>

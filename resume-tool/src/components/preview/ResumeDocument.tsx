@@ -1,5 +1,6 @@
 import { Document, Page, Text, View, StyleSheet, Font } from '@react-pdf/renderer';
 import type { Resume, Density } from '../../types/resume';
+import type { ContentStyle } from '../../types/resume';
 
 // Register Chinese font
 try {
@@ -22,7 +23,7 @@ const DENSITY_CONFIG: Record<Density, { fontSize: number; lineHeight: number; se
   spacious: { fontSize: 11, lineHeight: 1.7, sectionGap: 16, itemGap: 10, titleSize: 16 },
 };
 
-function createStyles(density: Density) {
+function createStyles(density: Density, cs: ContentStyle) {
   const cfg = DENSITY_CONFIG[density];
   return StyleSheet.create({
     page: {
@@ -64,15 +65,29 @@ function createStyles(density: Density) {
     section: {
       marginBottom: cfg.sectionGap,
     },
-    sectionTitle: {
+    sectionTitleRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      borderBottom: '1px solid #ddd',
+      paddingBottom: 2,
+      marginBottom: 0,
+    },
+    sectionTitleText: {
       fontSize: cfg.titleSize,
       fontWeight: 700,
-      borderBottom: '1px solid #ddd',
-      paddingBottom: 3,
-      marginBottom: cfg.itemGap + 2,
+    },
+    verticalBar: {
+      width: 3,
+      height: cfg.titleSize,
+      backgroundColor: '#1a1a1a',
+      marginRight: 6,
+      borderRadius: 1,
+    },
+    titleSpacer: {
+      height: 0,
     },
     item: {
-      marginBottom: cfg.itemGap,
+      marginBottom: cs.itemBlockGap,
     },
     itemHeader: {
       flexDirection: 'row',
@@ -81,7 +96,8 @@ function createStyles(density: Density) {
     },
     itemTitle: {
       fontWeight: 700,
-      fontSize: cfg.fontSize + 0.5,
+      fontSize: cs.contentTitleSize,
+      marginBottom: cs.contentTitleGap,
     },
     itemSubtitle: {
       fontSize: cfg.fontSize,
@@ -93,7 +109,8 @@ function createStyles(density: Density) {
     },
     itemDesc: {
       fontSize: cfg.fontSize,
-      lineHeight: cfg.lineHeight,
+      lineHeight: cs.contentLineHeight,
+      letterSpacing: cs.contentLetterSpacing,
       color: '#444',
     },
     skillsRow: {
@@ -106,8 +123,19 @@ function createStyles(density: Density) {
     },
     summaryText: {
       fontSize: cfg.fontSize,
-      lineHeight: cfg.lineHeight,
+      lineHeight: cs.contentLineHeight,
+      letterSpacing: cs.contentLetterSpacing,
       color: '#444',
+    },
+    bullet: {
+      fontSize: cfg.fontSize,
+      lineHeight: cs.contentLineHeight,
+      letterSpacing: cs.contentLetterSpacing,
+      color: '#444',
+      marginRight: 4,
+    },
+    descWithBullet: {
+      flexDirection: 'row',
     },
   });
 }
@@ -115,10 +143,11 @@ function createStyles(density: Density) {
 interface ResumeDocumentProps {
   resume: Resume;
   density: Density;
+  contentStyle: ContentStyle;
 }
 
-export default function ResumeDocument({ resume, density }: ResumeDocumentProps) {
-  const styles = createStyles(density);
+export default function ResumeDocument({ resume, density, contentStyle }: ResumeDocumentProps) {
+  const styles = createStyles(density, contentStyle);
   const { personalInfo, sections } = resume;
 
   const contacts = [
@@ -155,9 +184,22 @@ export default function ResumeDocument({ resume, density }: ResumeDocumentProps)
         {/* Sections */}
         {sections.map((section) => (
           <View key={section.id} style={styles.section} wrap={false}>
-            <Text style={styles.sectionTitle}>
-              {section.title || section.type}
-            </Text>
+            {/* Section title with optional vertical bar */}
+            <View style={styles.sectionTitleRow}>
+              {contentStyle.showVerticalBar && (
+                <>
+                  <View style={styles.verticalBar} />
+                  {contentStyle.verticalBarCount >= 2 && (
+                    <View style={{ ...styles.verticalBar, marginLeft: 2 }} />
+                  )}
+                </>
+              )}
+              <Text style={styles.sectionTitleText}>
+                {section.title || section.type}
+              </Text>
+            </View>
+            {/* Spacer for title-to-content gap */}
+            <View style={{ height: contentStyle.titleContentGap }} />
 
             {section.type === 'summary' ? (
               section.items.map((item) => (
@@ -197,7 +239,14 @@ export default function ResumeDocument({ resume, density }: ResumeDocumentProps)
                     )}
                   </View>
                   {item.description && (
-                    <Text style={styles.itemDesc}>{item.description}</Text>
+                    contentStyle.showParagraphBullet ? (
+                      <View style={styles.descWithBullet}>
+                        <Text style={styles.bullet}>•</Text>
+                        <Text style={styles.itemDesc}>{item.description}</Text>
+                      </View>
+                    ) : (
+                      <Text style={styles.itemDesc}>{item.description}</Text>
+                    )
                   )}
                 </View>
               ))

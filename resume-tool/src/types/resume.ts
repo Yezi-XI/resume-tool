@@ -46,6 +46,30 @@ export interface ResumeVersion {
 
 export type Density = 'compact' | 'normal' | 'spacious';
 
+export interface ContentStyle {
+  titleContentGap: number;
+  contentTitleSize: number;
+  contentTitleGap: number;
+  contentLineHeight: number;
+  contentLetterSpacing: number;
+  itemBlockGap: number;
+  showVerticalBar: boolean;
+  verticalBarCount: number;
+  showParagraphBullet: boolean;
+}
+
+export const DEFAULT_CONTENT_STYLE: ContentStyle = {
+  titleContentGap: 8,
+  contentTitleSize: 10.5,
+  contentTitleGap: 4,
+  contentLineHeight: 1.5,
+  contentLetterSpacing: 0,
+  itemBlockGap: 6,
+  showVerticalBar: false,
+  verticalBarCount: 1,
+  showParagraphBullet: false,
+};
+
 export const SECTION_LABELS: Record<SectionType, string> = {
   experience: '工作经历',
   education: '教育背景',
