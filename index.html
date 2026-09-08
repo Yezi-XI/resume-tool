@@ -104,6 +104,8 @@ input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(
 .pisub{color:#555}
 .pidate{font-size:9pt;color:#888;white-space:nowrap}
 .pidesc{color:#444}
+.plead{margin-bottom:2px}
+.plead-text{font-weight:700}
 
 
 .photo-upload{display:flex;flex-direction:column;gap:10px}
@@ -201,7 +203,7 @@ const TYPE_OPTS = ['education','practical_experience','projects','campus_experie
 
 let nextId = 100;
 function uid() { return 'id-' + (nextId++) + '-' + Date.now().toString(36); }
-function newItem(ov) { return { id:uid(), title:'', subtitle:'', startDate:'', endDate:'', description:'', ...ov }; }
+function newItem(ov) { return { id:uid(), title:'', subtitle:'', startDate:'', endDate:'', lead:'', description:'', ...ov }; }
 
 const DEFAULT = {
   personalInfo: { name:'', title:'', phone:'', email:'', location:'', website:'', photo:'' },
@@ -221,6 +223,7 @@ const FIELDS = {
     { key:'subtitle', label:'学历/专业', ph:'本科 / 计算机科学与技术' },
     { key:'startDate', label:'开始时间', ph:'2016.09' },
     { key:'endDate', label:'结束时间', ph:'2020.06' },
+    { key:'lead', label:'总起小标题', ph:'在校经历：' },
     { key:'description', label:'在校经历', ph:'GPA、获奖情况等...', area:true },
   ],
   practical_experience: [
@@ -228,6 +231,7 @@ const FIELDS = {
     { key:'subtitle', label:'职位', ph:'高级前端工程师' },
     { key:'startDate', label:'开始时间', ph:'2020.06' },
     { key:'endDate', label:'结束时间', ph:'2023.06' },
+    { key:'lead', label:'总起小标题', ph:'工作内容：' },
     { key:'description', label:'工作描述', ph:'描述你的工作职责和成果...', area:true },
   ],
   campus_experience: [
@@ -235,6 +239,7 @@ const FIELDS = {
     { key:'subtitle', label:'职位', ph:'主席 / 干事' },
     { key:'startDate', label:'开始时间', ph:'2017.09' },
     { key:'endDate', label:'结束时间', ph:'2019.06' },
+    { key:'lead', label:'总起小标题', ph:'经历内容：' },
     { key:'description', label:'经历描述', ph:'描述你的校园经历和收获...', area:true },
   ],
   projects: [
@@ -242,28 +247,32 @@ const FIELDS = {
     { key:'subtitle', label:'角色', ph:'项目负责人' },
     { key:'startDate', label:'开始时间', ph:'2022.03' },
     { key:'endDate', label:'结束时间', ph:'2022.08' },
+    { key:'lead', label:'总起小标题', ph:'项目内容：' },
     { key:'description', label:'项目描述', ph:'描述项目背景、技术栈、贡献...', area:true },
   ],
   honors: [
     { key:'title', label:'奖项名称', ph:'国家奖学金' },
     { key:'subtitle', label:'颁发机构', ph:'教育部' },
     { key:'startDate', label:'获得时间', ph:'2024.06' },
+    { key:'lead', label:'总起小标题', ph:'获奖情况：' },
     { key:'description', label:'奖项描述', area:true },
   ],
   other: [
     { key:'title', label:'标题', ph:'技能 / 兴趣爱好' },
+    { key:'lead', label:'总起小标题', ph:'内容：' },
     { key:'description', label:'内容', ph:'具体描述...', area:true },
   ],
 };
 
 let zoomLevel = 100;
 let styleSettings = {
- titleBg: false, titleBgColor: '#dce8fc', titleBgRadius: 6, titleBgPadding: 6, titleBgAlign: 'center', titleBgScope: 'full',
+ titleBg: false, titleBgColor: '#dce8fc', titleBgRadius: 6, titleBgPadding: 6, titleBgPaddingY: null, titleBgPaddingX: null, titleBgAlign: 'center', titleBgScope: 'full',
  titleBgRadiusTL: null, titleBgRadiusTR: null, titleBgRadiusBR: null, titleBgRadiusBL: null,
  titleFontSize: null, titleIconSize: 0, titleIconGap: 6,
  underlineShow: true, underlineThick: 1, underlineColor: '#ddd',
   itemBulletShow: false, itemBullet: 'symbol', itemBulletSymbol: '•', itemBulletIcon: 'check', itemBulletNumFmt: 'dot', itemBulletColor: '#1a1a1a', itemBulletGap: 4,
-  titleBarShow: false, titleBar: 'two', titleBarColor: '#1a1a1a', titleBarW: 4, titleBarH: 16, titleBarGap: 3,
+  leadShow: true, leadColor: '#1a1a1a', leadBold: true, leadItalic: false, leadUnderline: false, leadSize: null, leadFont: '',
+  titleBarShow: false, titleBar: 'two-stagger', titleBarColor: '#1a1a1a', titleBarW: 4, titleBarH: 16, titleBarGap: 3,
   paraSpacing: 'tight', underlineAlign: 'bottom',
  paraShow: false, paraWidth: 80, paraHeight: 'standard', paraColor: '#1a1a1a', paraSkew: -8,
  paraRadiusTL: 0, paraRadiusTR: 2, paraRadiusBR: 0, paraRadiusBL: 2, paraRadius: 0,
@@ -686,6 +695,8 @@ function br(ss, prefix) {
   var bl = ss[blKey] != null ? ss[blKey] : ss[rKey];
   return tl + 'px ' + tr + 'px ' + br + 'px ' + bl + 'px';
 }
+function bgPadY(ss) { return ss.titleBgPaddingY != null ? ss.titleBgPaddingY : (ss.titleBgPadding != null ? ss.titleBgPadding : 6); }
+function bgPadX(ss) { return ss.titleBgPaddingX != null ? ss.titleBgPaddingX : (ss.titleBgPadding != null ? ss.titleBgPadding : 6); }
 
 // ── 段落前缀渲染（符号 / 图标 / 序号）──
 function bulletNumFmt(n, fmt) {
@@ -724,6 +735,23 @@ function renderDescBlock(text, counter, extraStyle) {
     d.appendChild(row);
   });
   return d;
+}
+// ── 总起小标题渲染（"xx："）──
+function renderLeadBlock(lead) {
+  var ss = styleSettings;
+  var div = h('div', { className:'plead' });
+  if (!lead) return div;
+  var txt = String(lead);
+  // 若未以中文冒号/英文冒号结尾，自动补一个「：」
+  if (!/[：:]$/.test(txt)) txt += '：';
+  var st = { color: ss.leadColor || '#1a1a1a' };
+  if (ss.leadBold) st.fontWeight = '700';
+  if (ss.leadItalic) st.fontStyle = 'italic';
+  if (ss.leadUnderline) st.textDecoration = 'underline';
+  if (ss.leadSize != null) st.fontSize = ss.leadSize + 'pt';
+  if (ss.leadFont) st.fontFamily = ss.leadFont;
+  div.appendChild(h('span', { className:'plead-text', style: st }, txt));
+  return div;
 }
 function renderPreview() {
   const container = document.getElementById('preview-container');
@@ -776,8 +804,8 @@ function renderPreview() {
       if (sz > maxIconHeight) maxIconHeight = sz;
     }
   });
-  var iconBgWidth = maxIconWidth + (ss.titleBgPadding || 0) * 2;
-  var iconBgHeight = maxIconHeight + (ss.titleBgPadding || 0) * 2;
+  var iconBgWidth = maxIconWidth + bgPadX(ss) * 2;
+  var iconBgHeight = maxIconHeight + bgPadY(ss) * 2;
 
   // Sections
   sections.forEach(function(sec) {
@@ -798,13 +826,14 @@ function renderPreview() {
        stDiv.style.display = 'flex';
         stDiv.style.alignItems = ss.titleBgAlign === 'bottom' ? 'flex-end' : 'center';
        stDiv.style.borderBottom = 'none';
-        stDiv.style.paddingLeft = ss.titleBgPadding + 'px';
-        stDiv.style.paddingRight = ss.titleBgPadding + 'px';
+        stDiv.style.paddingLeft = bgPadX(ss) + 'px';
+        stDiv.style.paddingRight = bgPadX(ss) + 'px';
         if (ss.titleBgAlign === 'bottom') {
-          stDiv.style.paddingTop = ss.titleBgPadding + 'px';
+          stDiv.style.paddingTop = bgPadY(ss) + 'px';
            stDiv.style.paddingBottom = '2px';
         } else {
-          stDiv.style.padding = ss.titleBgPadding + 'px';
+          stDiv.style.paddingTop = bgPadY(ss) + 'px';
+          stDiv.style.paddingBottom = bgPadY(ss) + 'px';
         }
      }
    }
@@ -821,12 +850,15 @@ function renderPreview() {
       inner.style.background = ss.titleBgColor;
       inner.style.borderRadius = br(ss);
       if (ss.titleBgAlign === 'bottom') {
-        inner.style.paddingTop = ss.titleBgPadding + 'px';
+        inner.style.paddingTop = bgPadY(ss) + 'px';
          inner.style.paddingBottom = '2px';
-        inner.style.paddingLeft = ss.titleBgPadding + 'px';
-        inner.style.paddingRight = ss.titleBgPadding + 'px';
+        inner.style.paddingLeft = bgPadX(ss) + 'px';
+        inner.style.paddingRight = bgPadX(ss) + 'px';
       } else {
-        inner.style.padding = ss.titleBgPadding + 'px';
+        inner.style.paddingTop = bgPadY(ss) + 'px';
+        inner.style.paddingBottom = bgPadY(ss) + 'px';
+        inner.style.paddingLeft = bgPadX(ss) + 'px';
+        inner.style.paddingRight = bgPadX(ss) + 'px';
       }
     }
     if (ss.titleBarShow) {
@@ -836,7 +868,9 @@ function renderPreview() {
       var tbColor = ss.titleBarColor || '#1a1a1a';
       var tbWrap = h('span', { style:{ display:'inline-flex', alignItems:'flex-end', gap: tbGap + 'px', flexShrink:'0' } });
       tbWrap.appendChild(h('span', { style:{ display:'inline-block', width: tbW + 'px', height: tbH + 'px', background: tbColor, borderRadius: '1px' } }));
-      if (ss.titleBar !== 'one') {
+      if (ss.titleBar === 'two-same') {
+        tbWrap.appendChild(h('span', { style:{ display:'inline-block', width: tbW + 'px', height: tbH + 'px', background: tbColor, borderRadius: '1px' } }));
+      } else if (ss.titleBar === 'two-stagger' || ss.titleBar === 'two') {
         tbWrap.appendChild(h('span', { style:{ display:'inline-block', width: tbW + 'px', height: Math.max(3, Math.round(tbH * 0.6)) + 'px', background: tbColor, borderRadius: '1px' } }));
       }
       inner.appendChild(tbWrap);
@@ -865,13 +899,16 @@ function renderPreview() {
         iconSpan.style.height = iconBgHeight + 'px';
         iconSpan.style.overflow = 'hidden';
         if (ss.titleBgAlign === 'bottom') {
-          iconSpan.style.paddingTop = ss.titleBgPadding + 'px';
+          iconSpan.style.paddingTop = bgPadY(ss) + 'px';
            iconSpan.style.paddingBottom = '2px';
-          iconSpan.style.paddingLeft = ss.titleBgPadding + 'px';
-          iconSpan.style.paddingRight = ss.titleBgPadding + 'px';
+          iconSpan.style.paddingLeft = bgPadX(ss) + 'px';
+          iconSpan.style.paddingRight = bgPadX(ss) + 'px';
           iconSpan.style.alignItems = 'flex-end';
         } else {
-          iconSpan.style.padding = ss.titleBgPadding + 'px';
+          iconSpan.style.paddingTop = bgPadY(ss) + 'px';
+          iconSpan.style.paddingBottom = bgPadY(ss) + 'px';
+          iconSpan.style.paddingLeft = bgPadX(ss) + 'px';
+          iconSpan.style.paddingRight = bgPadX(ss) + 'px';
         }
       }
       inner.appendChild(iconSpan);
@@ -895,7 +932,7 @@ function renderPreview() {
         paraTransform = 'skewX(' + (ss.paraFlip ? -ss.paraSkew : ss.paraSkew) + 'deg)';
      }
      var ulThick = ss.underlineShow ? ss.underlineThick : 1;
-     var basePad = (ss.titleBg && ss.titleBgScope === 'full') ? ss.titleBgPadding : 3;
+     var basePad = (ss.titleBg && ss.titleBgScope === 'full') ? bgPadY(ss) : 3;
      var rawSpacing = ss.paraSpacing === 'tight' ? -5 : (ss.paraSpacing === 'far' ? ((ss.titleBg && ss.titleBgScope === 'full') ? -1 : 0) : ((ss.titleBg && ss.titleBgScope === 'full') ? -(basePad - 3) : -(basePad - 1)));
      var rawSpacing = ss.paraSpacing === 'tight' ? ((ss.titleBg && ss.titleBgScope === 'full') ? -6 : -7) : (ss.paraSpacing === 'far' ? ((ss.titleBg && ss.titleBgScope === 'full') ? -1 : 0) : ((ss.titleBg && ss.titleBgScope === 'full') ? -(basePad - 3) : -(basePad - 1)));
      var rawSpacing = ss.paraSpacing === 'tight' ? ((ss.titleBg && ss.titleBgScope === 'full') ? -6 : -7) : (ss.paraSpacing === 'far' ? ((ss.titleBg && ss.titleBgScope === 'full') ? 0 : 2) : ((ss.titleBg && ss.titleBgScope === 'full') ? -4 : -3));
@@ -936,13 +973,13 @@ function renderPreview() {
 
    sdiv.appendChild(h('div', { style: { height: gap + 'px' } }));
 
-   var secNumCounter = { n: 0 };
    if (sec.type === 'other') {
      sec.items.forEach(function(item) {
         const ig = state.itemGap != null ? state.itemGap : cfg.ig;
         const idiv = h('div', { className:'pitem', style:{ marginBottom: ig + 'px' } });
        if (item.title) idiv.appendChild(h('div', { className:'pititle', style:{ marginBottom: (state.contentTitleDescGap||2) + 'px', fontSize: state.contentTitleFontSize ? state.contentTitleFontSize + 'pt' : '' } }, item.title));
-       idiv.appendChild(renderDescBlock(item.description, secNumCounter));
+       if (styleSettings.leadShow && item.lead) idiv.appendChild(renderLeadBlock(item.lead));
+       idiv.appendChild(renderDescBlock(item.description, { n: 0 }));
        sdiv.appendChild(idiv);
      });
    } else {
@@ -965,7 +1002,8 @@ function renderPreview() {
        if (item.title) ihd.appendChild(h('div', { className:'pititle', style:{ flex:1, textAlign:'left', fontSize: itSize||(state.contentTitleFontSize ? state.contentTitleFontSize + 'pt' : ''), color: itColor||undefined, fontFamily: itFont||undefined } }, item.title));
        if (item.subtitle) ihd.appendChild(h('div', { className:'pisub', style:{ textAlign:'right', color: isColor||undefined, fontSize: isSize||undefined, fontFamily: isFont||undefined } }, item.subtitle));
       idiv.appendChild(ihd);
-        if (item.description) idiv.appendChild(renderDescBlock(item.description, secNumCounter, { marginTop: (state.contentTitleDescGap||2) + 'px' }));
+        if (styleSettings.leadShow && item.lead) idiv.appendChild(renderLeadBlock(item.lead));
+        if (item.description) idiv.appendChild(renderDescBlock(item.description, { n: 0 }, { marginTop: (state.contentTitleDescGap||2) + 'px' }));
        sdiv.appendChild(idiv);
      });
    }
@@ -1019,7 +1057,7 @@ function exportPDF() {
   const pv = document.getElementById('resume-preview');
   if (!pv) return;
   const w = window.open('', '_blank', 'width=800,height=600');
-  w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>简历</title><style>body{margin:0;display:flex;justify-content:center;background:#e8e8e8;padding:20px;font-family:"PingFang SC","Microsoft YaHei",sans-serif}@media print{body{background:#fff;padding:0}}.pview{width:210mm;min-height:297mm;padding:15mm 18mm;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.15)}.pname{font-weight:700;margin-bottom:4px}.ptitle{color:#555;margin-bottom:6px}.pcontact{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:9pt;color:#666}.pshd{border-bottom:2px solid #1a1a1a;padding-bottom:8px;display:flex;align-items:flex-start}.pstitle{font-weight:700;border-bottom:2px solid #ddd;padding-bottom:3px;margin-bottom:4px;display:flex;align-items:center;gap:6px;line-height:1.2;overflow:hidden}.pstitle-name{flex:1}.psec-spacing{display:flex;align-items:center;gap:4px;font-size:8pt;color:#bbb;font-weight:400}.psec-spacing span{white-space:nowrap}.pitem{margin-bottom:4px}.pihead{display:flex;justify-content:space-between;margin-bottom:2px}.pititle{font-weight:700}.pisub{color:#555}.pidate{font-size:9pt;color:#888;white-space:nowrap}.pidesc{color:#444}.pstitle{display:flex;align-items:center;gap:6px}.pstitle-name{flex:1}.psec-spacing{display:flex;align-items:center;gap:4px;font-size:8pt;color:#bbb;font-weight:400}.psec-spacing span{white-space:nowrap}@media print{.pview{box-shadow:none!important;width:100%;min-height:auto;padding:0}}</style></head><body>');
+  w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>简历</title><style>body{margin:0;display:flex;justify-content:center;background:#e8e8e8;padding:20px;font-family:"PingFang SC","Microsoft YaHei",sans-serif}@media print{body{background:#fff;padding:0}}.pview{width:210mm;min-height:297mm;padding:15mm 18mm;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.15)}.pname{font-weight:700;margin-bottom:4px}.ptitle{color:#555;margin-bottom:6px}.pcontact{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:9pt;color:#666}.pshd{border-bottom:2px solid #1a1a1a;padding-bottom:8px;display:flex;align-items:flex-start}.pstitle{font-weight:700;border-bottom:2px solid #ddd;padding-bottom:3px;margin-bottom:4px;display:flex;align-items:center;gap:6px;line-height:1.2;overflow:hidden}.pstitle-name{flex:1}.psec-spacing{display:flex;align-items:center;gap:4px;font-size:8pt;color:#bbb;font-weight:400}.psec-spacing span{white-space:nowrap}.pitem{margin-bottom:4px}.pihead{display:flex;justify-content:space-between;margin-bottom:2px}.pititle{font-weight:700}.pisub{color:#555}.pidate{font-size:9pt;color:#888;white-space:nowrap}.pidesc{color:#444}.plead{margin-bottom:2px}.plead-text{font-weight:700}.pstitle{display:flex;align-items:center;gap:6px}.pstitle-name{flex:1}.psec-spacing{display:flex;align-items:center;gap:4px;font-size:8pt;color:#bbb;font-weight:400}.psec-spacing span{white-space:nowrap}@media print{.pview{box-shadow:none!important;width:100%;min-height:auto;padding:0}}</style></head><body>');
   w.document.body.appendChild(pv.cloneNode(true));
   w.document.close();
   setTimeout(function() { w.print(); }, 300);
@@ -1101,7 +1139,8 @@ function renderStyle() {
     slider('右下圆角', 'titleBgRadiusBR', 0, 20, 1, 'px');
     slider('左下圆角', 'titleBgRadiusBL', 0, 20, 1, 'px');
     slider('统一圆角', 'titleBgRadius', 0, 20, 1, 'px');
-    slider('内边距', 'titleBgPadding', 2, 20, 1, 'px');
+    slider('上下内边距', 'titleBgPaddingY', 0, 24, 1, 'px');
+    slider('左右内边距', 'titleBgPaddingX', 0, 40, 1, 'px');
    select('底色范围', 'titleBgScope', [['full','整行'],['inline','仅文字'],['icon','仅LOGO']]);
     select('标题位置', 'titleBgAlign', [['center','居中'],['bottom','底部']]);
  }
@@ -1114,7 +1153,7 @@ function renderStyle() {
   body.appendChild(h('h3', { className:'sh', style:{ marginTop:'16px' } }, '标题前矩形块'));
   toggle('显示矩形块', 'titleBarShow');
   if (s.titleBarShow) {
-    select('块数', 'titleBar', [['one','一个'],['two','两个']]);
+    select('块数', 'titleBar', [['one','一个'],['two-same','两个（等高）'],['two-stagger','两个（错落）']]);
     color('颜色', 'titleBarColor');
     slider('块宽', 'titleBarW', 2, 12, 1, 'px');
     slider('块高', 'titleBarH', 8, 30, 1, 'px');
@@ -1157,6 +1196,17 @@ function renderStyle() {
     } else {
       select('符号', 'itemBulletSymbol', [['•','圆点'],['●','实心圆'],['▪','小方块'],['■','方块'],['◆','实心菱'],['➤','箭头'],['✦','星形']]);
     }
+  }
+
+  body.appendChild(h('h3', { className:'sh', style:{ marginTop:'16px' } }, '总起小标题'));
+  toggle('显示总起小标题', 'leadShow');
+  if (s.leadShow) {
+    color('文字颜色', 'leadColor');
+    toggle('加粗', 'leadBold');
+    toggle('斜体', 'leadItalic');
+    toggle('下划线', 'leadUnderline');
+    slider('字号', 'leadSize', 8, 24, 1, 'pt');
+    select('字体', 'leadFont', [['','默认'],['PingFang SC','苹方'],['Microsoft YaHei','微软雅黑'],['SimHei','黑体'],['SimSun','宋体'],['KaiTi','楷体'],['FangSong','仿宋'],['Arial','Arial'],['Georgia','Georgia']]);
   }
 
   body.appendChild(h('h3', { className:'sh', style:{ marginTop:'16px' } }, '照片设置'));
