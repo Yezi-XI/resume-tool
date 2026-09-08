@@ -96,11 +96,14 @@ input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(
 .ebtn:hover{background:var(--ah)}
 .pc{flex:1;display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:24px}
 
-.pview{width:210mm;min-height:297mm;padding:15mm 18mm;background:#fff;font-family:'PingFang SC','Microsoft YaHei',sans-serif;box-shadow:0 1px 4px rgba(0,0,0,.15)}
-.pname{font-weight:700;margin-bottom:4px}
-.ptitle{color:#555;margin-bottom:6px}
-.pcontact{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:9pt;color:#666}
-.pshd{border-bottom:2px solid #1a1a1a;padding-bottom:8px;display:flex;align-items:flex-start}
+.pview{width:210mm;min-height:297mm;padding:15mm 18mm;background:#fff;font-family:'PingFang SC','Microsoft YaHei',sans-serif;box-shadow:0 1px 4px rgba(0,0,0,.15);display:flex;flex-direction:column}
+.pname{font-weight:700}
+.ptitle{color:#555}
+.pname-row{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+.pname-divider{border-bottom:2px solid #1a1a1a;margin-bottom:6px}
+.pcontact{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 0;font-size:9pt;color:#666}
+.pcontact span{min-width:0;overflow-wrap:break-word}
+.pshd{position:relative;border-bottom:2px solid #1a1a1a;padding-bottom:8px;display:flex;align-items:flex-start}
 .psec{margin-bottom:8px}
 .pstitle{font-weight:700;border-bottom:2px solid #ddd;padding-bottom:3px;margin-bottom:4px;display:flex;align-items:center;gap:6px;line-height:1.2;overflow:hidden}.pstitle-name{flex:1}.psec-spacing{display:flex;align-items:center;gap:4px;font-size:8pt;color:#bbb;font-weight:400}.psec-spacing span{white-space:nowrap}
 .pitem{margin-bottom:4px}
@@ -123,15 +126,16 @@ input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(
 .photo-actions button:hover{background:var(--border)}
 
 .pshd-l{flex:1}
-.pshd-r{flex-shrink:0;margin-left:20px}
-.pphoto{width:80px;height:100px;border-radius:4px;overflow:hidden}
+.pshd-r{position:absolute;right:0}
+.pphoto{width:21mm;height:26mm;border-radius:4px;overflow:hidden}
 .pphoto img{width:100%;height:100%;object-fit:cover}.pstitle-icon{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;box-sizing:border-box}.pstitle-icon svg{max-width:100%;height:auto}.pstitle-para{transform-origin:left center}.zoom-ctrl{position:absolute;bottom:12px;right:12px;display:flex;align-items:center;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:4px 6px;box-shadow:0 1px 4px rgba(0,0,0,.1);z-index:10;font-size:12px;user-select:none}.zoom-ctrl button{width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:4px;background:none;color:var(--t2);font-size:14px;font-weight:600}.zoom-ctrl button:hover{background:var(--bg)}.zoom-ctrl .zoom-val{min-width:40px;text-align:center;color:var(--text);font-weight:500;cursor:pointer}.zoom-ctrl .zoom-val:hover{color:var(--accent)}.style-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:8px}
 .style-label{font-size:12px;color:var(--t2);white-space:nowrap;min-width:0;flex-shrink:0}
 .style-slider{flex:1;height:4px;accent-color:var(--accent);min-width:60px}
 .style-color{width:32px;height:24px;border:1px solid var(--border);border-radius:3px;padding:0;cursor:pointer}
 .style-select{font-size:12px;padding:3px 6px;border:1px solid var(--border);border-radius:var(--r);background:var(--surface);color:var(--text)}
 .toggle-btn{padding:3px 12px;font-size:11px;font-weight:600;border-radius:10px;background:var(--bg);color:var(--t3);min-width:44px;text-align:center}
-.toggle-btn.on{background:var(--accent);color:#fff}.style-slider{-webkit-appearance:none;appearance:none;height:6px;background:var(--border);border-radius:3px;outline:none}.style-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .1s}.style-slider::-webkit-slider-thumb:active{transform:scale(1.15)}@media print{body{background:#fff}.app{display:block}.side,.ptb{display:none!important}.main{background:#fff;overflow:visible}.pc{padding:0;overflow:visible}.pview{box-shadow:none!important;width:100%;min-height:auto;padding:0}}
+.toggle-btn.on{background:var(--accent);color:#fff}.style-slider{-webkit-appearance:none;appearance:none;height:6px;background:var(--border);border-radius:3px;outline:none}.style-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .1s}.style-slider::-webkit-slider-thumb:active{transform:scale(1.15)}.a4check-overlay{position:fixed;inset:0;background:rgba(0,0,0,.42);display:flex;align-items:center;justify-content:center;z-index:999}.a4check-modal{background:var(--surface);border-radius:12px;width:440px;max-width:92vw;max-height:82vh;overflow:auto;box-shadow:0 12px 44px rgba(0,0,0,.28);animation:a4pop .18s ease}.a4check-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);font-weight:600;font-size:14px}.a4check-close{border:none;background:none;font-size:20px;color:var(--t3);cursor:pointer;line-height:1}.a4check-close:hover{color:var(--text)}.a4check-body{padding:16px 18px}.a4check-status{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:10px 12px;border-radius:8px;margin-bottom:12px}.a4check-status.ok{background:#ecfdf5;color:#047857}.a4check-status.warn{background:var(--ds);color:var(--danger)}.a4check-meta{font-size:13px;color:var(--t2);margin-bottom:10px;line-height:1.7}.a4check-issues{list-style:none;margin:0;padding:0}.a4check-issues li{font-size:13px;color:#8a5a00;padding:7px 10px;border-left:3px solid #f59e0b;background:#fffbeb;border-radius:5px;margin-bottom:6px;line-height:1.55}.a4check-okbox{font-size:13px;color:#047857;padding:7px 10px;border-left:3px solid #10b981;background:#ecfdf5;border-radius:5px;line-height:1.55}@keyframes a4pop{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+@page{size:A4;margin:0}@media print{body{background:#fff}.app{display:block}.side,.ptb,.zoom-ctrl{display:none!important}.main{background:#fff;overflow:visible}.pc{padding:0;overflow:visible}.pview{box-shadow:none!important;transform:none!important;width:210mm;min-height:297mm;padding:15mm 18mm;margin:0}.psec,.pitem{break-inside:avoid;page-break-inside:avoid}}
 </style>
 </head>
 <body data-page-node-id="n6x09zf1tcdOpvG4gwHZMj">
@@ -169,6 +173,10 @@ input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(
       <button class="ebtn" onclick="exportPDF()" data-page-node-id="L78lRJFbVKiXJVOy6zuC9k">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="4iPpW4cdm9qdAABXOxSaFL"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" data-page-node-id="79t3pqDqGQYqHHOx5Mhwzg"/><polyline points="7 10 12 15 17 10" data-page-node-id="fy2vBdXEhpGrwXSkTHjuoW"/><line x1="12" x2="12" y1="15" y2="3" data-page-node-id="6TnqiHofQD33ezQIWwvfNt"/></svg>
         导出 PDF
+      </button>
+      <button class="ebtn" onclick="checkA4Print()" style="background:var(--surface);color:var(--text);border:1px solid var(--border)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        打印检测
       </button>
     </div>
     <div class="pc" id="preview-container" data-page-node-id="OEph6yWGqDwvjLfIsmQRXz"></div><div class="zoom-ctrl" data-page-node-id="iGCoPQqVEMP6EXzEgm4qQ7">
@@ -212,7 +220,7 @@ function uid() { return 'id-' + (nextId++) + '-' + Date.now().toString(36); }
 function newItem(ov) { return { id:uid(), title:'', subtitle:'', startDate:'', endDate:'', lead:'', description:'', ...ov }; }
 
 const DEFAULT = {
-  personalInfo: { name:'', title:'', phone:'', email:'', location:'', website:'', photo:'' },
+  personalInfo: { name:'', title:'', phone:'', email:'', location:'', website:'', photo:'', customFields:[] },
   sections: [
    { id:'sec-edu', type:'education', title:'教育背景', letterSpacing:0, lineHeight:null, items:[newItem({id:'item-edu-1'})] },
    { id:'sec-pe', type:'practical_experience', title:'实践经验', letterSpacing:0, lineHeight:null, items:[newItem({id:'item-pe-1'})] },
@@ -284,12 +292,13 @@ let styleSettings = {
   paraShape: 'parallelogram',
  paraFlip: false,
  paraTailShow: false, paraTailW: 8, paraTailGap: 3,
- photoWidth: 80, photoHeight: 100, photoLockRatio: true, photoOffsetX: 0, photoOffsetY: 0,
+ contactColGap: 16, contactRowGap: 4, pageVAlign: 'top', pageOffsetY: 0, nameDividerShow: true, photoAlign: 'center', bodyLineHeight: null, nameDividerGap: 6, headerGap: null, infoHorizontal: false, headerBottomGap: 2, nameTitleAlign: 'baseline', nameTitleGap: 12, pagePaddingTop: 15,
+ photoWidth: 21, photoHeight: 26, photoLockRatio: true, photoOffsetX: 0, photoOffsetY: 0,
 };
 const DEFAULT_STYLE_SETTINGS = JSON.parse(JSON.stringify(styleSettings));
 // 字体样式元素前缀：姓名/求职意向/标题/副标题/时间/总起小标题
-const FONT_PREFIXES = ['name', 'ptitle', 'itemTitle', 'itemSub', 'itemDate', 'lead'];
-const FONT_LABELS = { name:'姓名', ptitle:'求职意向', itemTitle:'标题', itemSub:'副标题', itemDate:'时间', lead:'总起小标题' };
+const FONT_PREFIXES = ['name', 'ptitle', 'itemTitle', 'itemSub', 'itemDate', 'lead', 'contact'];
+const FONT_LABELS = { name:'姓名', ptitle:'求职意向', itemTitle:'标题', itemSub:'副标题', itemDate:'时间', lead:'总起小标题', contact:'联系方式' };
 const FONT_DEFAULTS = (function() {
   var o = {};
   FONT_PREFIXES.forEach(function(p) { o[p] = { color:'', bold:null, italic:null, underline:null, size:null, font:'' }; });
@@ -336,7 +345,11 @@ FONT_PREFIXES.forEach(function(p) {
 });
 if (state.itemHeadLayout == null) state.itemHeadLayout = 'cab';
 if (state.globalFont == null) state.globalFont = '';
+if (state.resume && state.resume.personalInfo && state.resume.personalInfo.customFields == null) state.resume.personalInfo.customFields = [];
 try { const raw = localStorage.getItem(STORE_KEY); if (raw) { const parsed = JSON.parse(raw); if (parsed._version === DATA_VERSION) { state = parsed; if (parsed.style) { try { Object.assign(styleSettings, parsed.style); } catch(e) {} } } } } catch(e) {}
+// 照片尺寸旧数据迁移：旧版用 px（>50 视为 px），换算为 mm（1px≈0.2646mm，即 ÷3.78）
+if (styleSettings.photoWidth != null && styleSettings.photoWidth > 50) styleSettings.photoWidth = Math.round(styleSettings.photoWidth / 3.78);
+if (styleSettings.photoHeight != null && styleSettings.photoHeight > 60) styleSettings.photoHeight = Math.round(styleSettings.photoHeight / 3.78);
 // 旧数据迁移：lead 样式从 styleSettings 迁到 state（仅当 state 里还没有时）
 if (styleSettings.leadColor != null && state.leadColor == null) state.leadColor = styleSettings.leadColor;
 if (styleSettings.leadBold != null && state.leadBold == null) state.leadBold = styleSettings.leadBold;
@@ -355,6 +368,7 @@ FONT_PREFIXES.forEach(function(p) {
 });
 if (state.itemHeadLayout == null) state.itemHeadLayout = 'cab';
 if (state.globalFont == null) state.globalFont = '';
+if (state.resume && state.resume.personalInfo && state.resume.personalInfo.customFields == null) state.resume.personalInfo.customFields = [];
 function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify({ ...state, style: styleSettings, _version: DATA_VERSION })); } catch(e) {} }
 function resetAllStyles() {
   FONT_PREFIXES.forEach(function(p) {
@@ -433,6 +447,22 @@ function renderInfo() {
     );
     body.appendChild(grp);
   });
+
+  // 自定义信息字段
+  body.appendChild(h('h3', { className:'sh', style:{ marginTop:'16px' } }, '自定义信息'));
+  if (!info.customFields) info.customFields = [];
+  const cfArea = h('div', {});
+  info.customFields.forEach(function(cf, idx) {
+    const row = h('div', { style:{ display:'flex', gap:'6px', alignItems:'center', marginBottom:'6px' } });
+    row.appendChild(h('input', { className:'fi', placeholder:'字段名（如：年龄）', value:cf.label||'', style:{ flex:'1' }, oninput:function(e) { cf.label = e.target.value; save(); renderPreview(); } }));
+    row.appendChild(h('input', { className:'fi', placeholder:'内容（如：25岁）', value:cf.value||'', style:{ flex:'1' }, oninput:function(e) { cf.value = e.target.value; save(); renderPreview(); } }));
+    var showBtn = h('button', { className:'toggle-btn' + (cf.show !== false ? ' on' : ''), onclick:function() { cf.show = cf.show === false; save(); renderInfo(); renderPreview(); } }, cf.show !== false ? '显示' : '隐藏');
+    row.appendChild(showBtn);
+    row.appendChild(h('button', { className:'ib danger', title:'删除', onclick:function() { info.customFields.splice(idx, 1); save(); renderInfo(); renderPreview(); } }, I.trash));
+    cfArea.appendChild(row);
+  });
+  cfArea.appendChild(h('button', { className:'bs', style:{ fontSize:'12px', padding:'4px 10px', border:'1px solid var(--border)', borderRadius:'4px', cursor:'pointer' }, onclick:function() { info.customFields.push({ id:uid(), label:'', value:'', show:true }); save(); renderInfo(); renderPreview(); } }, '+ 添加字段'));
+  body.appendChild(cfArea);
 
   // Photo upload
   body.appendChild(h('h3', { className:'sh', style:{ marginTop:'16px' } }, '证件照'));
@@ -930,7 +960,11 @@ function htmlToMarkup(html) {
 }
 function renderDescBlock(text, bulletSpan, extraStyle) {
   var attrs = { className: 'pidesc' };
-  if (extraStyle) attrs.style = extraStyle;
+  if (styleSettings.bodyLineHeight != null) {
+    attrs.style = Object.assign({ lineHeight: styleSettings.bodyLineHeight }, extraStyle || {});
+  } else if (extraStyle) {
+    attrs.style = extraStyle;
+  }
   var d = h('div', attrs);
   if (!text) return d;
   var lines = String(text).split(/\n/);
@@ -988,7 +1022,9 @@ function renderLeadBlock(lead, bulletSpan, descText) {
   if (bulletSpan) row.appendChild(bulletSpan);
   if (txt) row.appendChild(h('span', { className:'plead-text', style: st }, txt));
   if (descText) {
-    var ds = h('span', { className:'plead-desc', style:{ flex:'1' } });
+    var dsStyle = { flex:'1' };
+    if (styleSettings.bodyLineHeight != null) dsStyle.lineHeight = styleSettings.bodyLineHeight;
+    var ds = h('span', { className:'plead-desc', style: dsStyle });
     String(descText).split(/\n/).forEach(function(line, i) {
       if (!line.trim()) { ds.appendChild(h('div', { style:{ height:'0.45em' } })); return; }
       if (i > 0) ds.appendChild(document.createElement('br'));
@@ -1004,33 +1040,85 @@ function renderPreview() {
   const resume = getMerged();
   const cfg = DENSITY_CFG[state.density];
   const { personalInfo, sections } = resume;
-  const contacts = [personalInfo.phone, personalInfo.email, personalInfo.location, personalInfo.website].filter(Boolean);
+  const contacts = [];
+  if (personalInfo.phone) contacts.push('电话：' + personalInfo.phone);
+  if (personalInfo.email) contacts.push('邮箱：' + personalInfo.email);
+  if (personalInfo.location) contacts.push('所在地：' + personalInfo.location);
+  if (personalInfo.website) contacts.push('个人网站：' + personalInfo.website);
+  // 自定义字段（显示且有值的）
+  if (personalInfo.customFields) {
+    personalInfo.customFields.forEach(function(cf) {
+      if (cf.show !== false && cf.value) contacts.push((cf.label ? cf.label + '：' : '') + cf.value);
+    });
+  }
 
   const pv = h('div', { className:'pview', id:'resume-preview' });
+ pv.style.paddingTop = (styleSettings.pagePaddingTop != null ? styleSettings.pagePaddingTop : 15) + 'mm';
  pv.style.fontSize = cfg.fs;
  pv.style.lineHeight = cfg.lh;
   if (state.globalLetterSpacing) pv.style.letterSpacing = state.globalLetterSpacing + 'px';
   if (state.globalLineHeight) pv.style.lineHeight = state.globalLineHeight;
   if (state.globalFont) pv.style.fontFamily = state.globalFont;
+  // 页面垂直对齐：顶部 / 居中 / 底部（内容不足一页时生效）
+  pv.style.justifyContent = styleSettings.pageVAlign === 'center' ? 'center' : (styleSettings.pageVAlign === 'bottom' ? 'flex-end' : 'flex-start');
 
   // Header
-  const hd = h('div', { className:'pshd', style:{ marginBottom: cfg.sg + 4 + 'px', paddingBottom: cfg.sg + 'px' } });
+  const hd = h('div', { className:'pshd', style:{ marginBottom: (styleSettings.headerGap != null ? styleSettings.headerGap : cfg.sg + 4) + 'px', paddingBottom: (styleSettings.headerBottomGap != null ? styleSettings.headerBottomGap : 2) + 'px' } });
+  if (styleSettings.pageOffsetY) hd.style.marginTop = styleSettings.pageOffsetY + 'px';
   const hdL = h('div', { className:'pshd-l' });
-  hdL.appendChild(h('div', { className:'pname', style: Object.assign({ fontSize:cfg.ns }, fontStyle(state, 'name')) }, personalInfo.name || '姓名'));
-  if (personalInfo.title) hdL.appendChild(h('div', { className:'ptitle', style: Object.assign({ fontSize:cfg.ts }, fontStyle(state, 'ptitle')) }, personalInfo.title));
+  const horizontal = !!styleSettings.infoHorizontal;
+  // 姓名 + 求职意向 同一行（横向模式居中）
+  const nameRow = h('div', { className:'pname-row', style:{
+    marginBottom: (styleSettings.nameDividerGap != null ? styleSettings.nameDividerGap : 6) + 'px',
+    alignItems: styleSettings.nameTitleAlign === 'center' ? 'center' : 'baseline',
+    columnGap: (styleSettings.nameTitleGap != null ? styleSettings.nameTitleGap : 12) + 'px'
+  } });
+  if (horizontal) nameRow.style.justifyContent = 'center';
+  nameRow.appendChild(h('span', { className:'pname', style: Object.assign({ fontSize:cfg.ns }, fontStyle(state, 'name')) }, personalInfo.name || '姓名'));
+  if (personalInfo.title) nameRow.appendChild(h('span', { className:'ptitle', style: Object.assign({ fontSize:cfg.ts }, fontStyle(state, 'ptitle')) }, personalInfo.title));
+  hdL.appendChild(nameRow);
+  // 姓名下横线（可显示/隐藏）
+  if (styleSettings.nameDividerShow) hdL.appendChild(h('div', { className:'pname-divider' }));
   if (contacts.length) {
-    const cr = h('div', { className:'pcontact' });
-    contacts.forEach(function(c) { cr.appendChild(h('span', {}, c)); });
+    const cr = h('div', { className:'pcontact', style: { rowGap: (styleSettings.contactRowGap != null ? styleSettings.contactRowGap : 4) + 'px' } });
+    const cst = fontStyle(state, 'contact');
+    if (horizontal) {
+      // 横向模式：字段凑紧，竖线紧贴内容，整体居中，每行最多 3 个
+      cr.style.display = 'flex';
+      cr.style.flexWrap = 'wrap';
+      cr.style.justifyContent = 'center';
+      cr.style.alignItems = 'center';
+      cr.style.rowGap = (styleSettings.contactRowGap != null ? styleSettings.contactRowGap : 4) + 'px';
+      contacts.forEach(function(c, i) {
+        if (i % 3 !== 0) cr.appendChild(h('span', { style: { margin: '0 8px', color: '#ccc', flexShrink: '0' } }, '|'));
+        cr.appendChild(h('span', { style: cst }, c));
+        if ((i + 1) % 3 === 0 && i + 1 < contacts.length) cr.appendChild(h('span', { style: { flexBasis: '100%', height: '0' } }));
+      });
+    } else {
+      const cg = styleSettings.contactColGap != null ? styleSettings.contactColGap : 16;
+      contacts.forEach(function(c, i) {
+        const st = Object.assign({}, cst);
+        // 列间距：column-gap 不支持负值，改用第二列的 margin-left（可负，实现两列靠近/重叠）
+        if (i % 2 === 1) st.marginLeft = cg + 'px';
+        cr.appendChild(h('span', { style: st }, c));
+      });
+    }
     hdL.appendChild(cr);
   }
   hd.appendChild(hdL);
   if (personalInfo.photo) {
-    const hdR = h('div', { className:'pshd-r' });
     const ss = styleSettings;
-    const pw = ss.photoWidth || 80;
-    const ph = ss.photoHeight || 100;
-    const photoDiv = h('div', { className:'pphoto', style:{ width: pw + 'px', height: ph + 'px' } });
-    const photoImg = h('img', { src: personalInfo.photo, style:{ objectFit: 'cover', transform: 'translate(' + (ss.photoOffsetX || 0) + 'px,' + (ss.photoOffsetY || 0) + 'px)' } });
+    const pw = ss.photoWidth || 21;
+    const ph = ss.photoHeight || 26;
+    // 左侧预留照片空间，避免文字与照片重叠（mm 与照片同单位，1mm≈3.78px）
+    hdL.style.paddingRight = (pw * 3.78 + 6) + 'px';
+    const hdR = h('div', { className:'pshd-r' });
+    const align = ss.photoAlign || 'center';
+    if (align === 'top') hdR.style.top = '0';
+    else if (align === 'bottom') hdR.style.bottom = '0';
+    else hdR.style.bottom = '6px'; // 居中：贴横线上方留一点留白
+    const photoDiv = h('div', { className:'pphoto', style:{ width: pw + 'mm', height: ph + 'mm' } });
+    const photoImg = h('img', { src: personalInfo.photo, style:{ width: '100%', height: '100%', objectFit: 'cover', transform: 'translate(' + (ss.photoOffsetX || 0) + 'px,' + (ss.photoOffsetY || 0) + 'px)' } });
     photoDiv.appendChild(photoImg);
     hdR.appendChild(photoDiv);
     hd.appendChild(hdR);
@@ -1324,11 +1412,121 @@ document.getElementById('tabs').addEventListener('click', function(e) {
 function exportPDF() {
   const pv = document.getElementById('resume-preview');
   if (!pv) return;
+  // 复用主页面的完整样式表，保证导出 PDF 与预览 100% 一致
+  const mainStyle = document.querySelector('style');
+  const baseCss = mainStyle ? mainStyle.textContent : '';
   const w = window.open('', '_blank', 'width=800,height=600');
-  w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>简历</title><style>body{margin:0;display:flex;justify-content:center;background:#e8e8e8;padding:20px;font-family:"PingFang SC","Microsoft YaHei",sans-serif}@media print{body{background:#fff;padding:0}}.pview{width:210mm;min-height:297mm;padding:15mm 18mm;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.15)}.pname{font-weight:700;margin-bottom:4px}.ptitle{color:#555;margin-bottom:6px}.pcontact{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:9pt;color:#666}.pshd{border-bottom:2px solid #1a1a1a;padding-bottom:8px;display:flex;align-items:flex-start}.pstitle{font-weight:700;border-bottom:2px solid #ddd;padding-bottom:3px;margin-bottom:4px;display:flex;align-items:center;gap:6px;line-height:1.2;overflow:hidden}.pstitle-name{flex:1}.psec-spacing{display:flex;align-items:center;gap:4px;font-size:8pt;color:#bbb;font-weight:400}.psec-spacing span{white-space:nowrap}.pitem{margin-bottom:4px}.pihead{display:flex;justify-content:space-between;margin-bottom:2px}.pititle{font-weight:700}.pisub{color:#555}.pidate{font-size:9pt;color:#888;white-space:nowrap}.pidesc{color:#444}.plead{margin-bottom:2px}.plead-text{font-weight:700}.plead-desc{color:#444}.pstitle{display:flex;align-items:center;gap:6px}.pstitle-name{flex:1}.psec-spacing{display:flex;align-items:center;gap:4px;font-size:8pt;color:#bbb;font-weight:400}.psec-spacing span{white-space:nowrap}@media print{.pview{box-shadow:none!important;width:100%;min-height:auto;padding:0}}</style></head><body>');
+  w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>简历</title><style>' + baseCss + '\nhtml,body{margin:0;padding:0;background:#fff}\nbody{display:block}\n.pview{margin:0}\n@page{size:A4;margin:0}\n@media print{html,body{margin:0;padding:0;width:210mm}.pview{box-shadow:none!important;transform:none!important;width:210mm;min-height:297mm;height:auto;padding:15mm 18mm;margin:0}.psec,.pitem{break-inside:avoid;page-break-inside:avoid}}</style></head><body>');
   w.document.body.appendChild(pv.cloneNode(true));
   w.document.close();
   setTimeout(function() { w.print(); }, 300);
+}
+
+// ── A4 打印检测 ──
+function checkA4Print() {
+  const pv = document.getElementById('resume-preview');
+  if (!pv) return;
+  const prevZoom = zoomLevel;
+  if (zoomLevel !== 100) { zoomLevel = 100; applyZoom(); }
+
+  const MM = 96 / 25.4;
+  const PAGE_W = 210 * MM;
+  const PAD_TOP = (styleSettings.pagePaddingTop != null ? styleSettings.pagePaddingTop : 15) * MM, PAD_BOTTOM = 15 * MM, PAD_LEFT = 18 * MM, PAD_RIGHT = 18 * MM;
+  const CONTENT_W = PAGE_W - PAD_LEFT - PAD_RIGHT;
+  const CONTENT_H = 297 * MM - PAD_TOP - PAD_BOTTOM;
+
+  const pvRect = pv.getBoundingClientRect();
+  const contentTop = pvRect.top + PAD_TOP;
+  const contentRight = pvRect.left + PAGE_W - PAD_RIGHT;
+
+  // 1) 内容总高度与预计页数
+  let contentBottom = contentTop;
+  for (const child of pv.children) {
+    const r = child.getBoundingClientRect();
+    if (r.height > 0) contentBottom = Math.max(contentBottom, r.bottom);
+  }
+  const totalContentH = contentBottom - contentTop;
+  const pages = Math.max(1, Math.ceil(totalContentH / CONTENT_H));
+
+  const issues = [];
+
+  // 2) 四方向出界检测（内容区四边：左18mm/右18mm/上15mm/下15mm）
+  const boxL = pvRect.left + PAD_LEFT;
+  const boxB = pvRect.top + 297 * MM - PAD_BOTTOM;
+  let leftOver = 0, rightOver = 0, topOver = 0, bottomOver = 0;
+  pv.querySelectorAll('*').forEach(function(el) {
+    const r = el.getBoundingClientRect();
+    if (r.width === 0 && r.height === 0) return;
+    if (r.left < boxL - 0.5) leftOver++;
+    if (r.right > contentRight + 0.5) rightOver++;
+    if (r.top < contentTop - 0.5) topOver++;
+    if (r.bottom > boxB + 0.5) bottomOver++;
+  });
+  const dirs = [];
+  if (leftOver > 0) dirs.push('左 ' + leftOver + ' 处');
+  if (rightOver > 0) dirs.push('右 ' + rightOver + ' 处');
+  if (topOver > 0) dirs.push('上 ' + topOver + ' 处');
+  if (bottomOver > 0) dirs.push('下 ' + bottomOver + ' 处');
+  if (dirs.length > 0) issues.push('内容出界：' + dirs.join('、') + ' 超出 A4 内容区边界');
+
+  // 3) 跨页截断检测（模块/条目被分页切开）
+  let breakCount = 0;
+  pv.querySelectorAll('.pshd, .psec, .pitem, .pstitle, .plead').forEach(function(el) {
+    const r = el.getBoundingClientRect();
+    if (r.height === 0) return;
+    const relTop = r.top - contentTop;
+    const relBottom = r.bottom - contentTop;
+    // 加 0.5px 容差，避免 subpixel 渲染误差把贴边元素误判为跨页
+    const topPage = Math.floor((relTop + 0.5) / CONTENT_H);
+    const bottomPage = Math.floor((relBottom - 0.5) / CONTENT_H);
+    if (topPage !== bottomPage) breakCount++;
+  });
+  if (breakCount > 0) issues.push('有 ' + breakCount + ' 个模块/条目会被分页截断（内容被切到两页）');
+
+  if (prevZoom !== 100) { zoomLevel = prevZoom; applyZoom(); }
+
+  showA4Result({
+    pages: pages,
+    totalHmm: Math.round(totalContentH / MM),
+    contentHmm: Math.round(CONTENT_H / MM),
+    issues: issues,
+    ok: issues.length === 0
+  });
+}
+
+function showA4Result(r) {
+  const old = document.getElementById('a4check-overlay');
+  if (old) old.remove();
+  const overlay = h('div', { className:'a4check-overlay', id:'a4check-overlay' });
+  overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
+  const modal = h('div', { className:'a4check-modal' });
+  const head = h('div', { className:'a4check-head' });
+  head.appendChild(h('span', {}, '📋 A4 打印检测'));
+  head.appendChild(h('button', { className:'a4check-close', onclick:function() { overlay.remove(); } }, '×'));
+  modal.appendChild(head);
+
+  const body = h('div', { className:'a4check-body' });
+  const status = h('div', { className:'a4check-status ' + (r.ok ? 'ok' : 'warn') });
+  status.appendChild(h('span', {}, r.ok ? '✅ 检测通过' : '⚠️ 发现问题'));
+  status.appendChild(h('span', { style:{ fontWeight:'400', fontSize:'12px' } }, r.ok ? '内容都在 A4 打印范围内' : '部分内容可能打印不完整'));
+  body.appendChild(status);
+
+  const meta = h('div', { className:'a4check-meta' });
+  meta.appendChild(h('div', {}, '内容高度：约 ' + r.totalHmm + ' mm（单页可用 ' + r.contentHmm + ' mm）'));
+  meta.appendChild(h('div', {}, '预计打印页数：' + r.pages + ' 页'));
+  body.appendChild(meta);
+
+  if (r.ok) {
+    body.appendChild(h('div', { className:'a4check-okbox' }, '所有模块、条目均未跨页，无横向溢出，可放心打印 / 导出 PDF。'));
+  } else {
+    const ul = h('ul', { className:'a4check-issues' });
+    r.issues.forEach(function(it) { ul.appendChild(h('li', {}, it)); });
+    body.appendChild(ul);
+    body.appendChild(h('div', { className:'a4check-meta', style:{ marginTop:'8px', marginBottom:'0' } }, '建议：精简内容、缩小字号或调低行距，让内容收进一页；也可调整模块，避免单条内容被分页切开。'));
+  }
+  modal.appendChild(body);
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
 }
 
 // ── Init ──
@@ -1401,6 +1599,12 @@ function renderStyle() {
     body.appendChild(row);
   }
 
+  body.appendChild(h('h3', { className:'sh' }, '页面调整'));
+  slider('顶部边距', 'pagePaddingTop', 15, 30, 1, 'mm');
+  select('垂直对齐', 'pageVAlign', [['top','顶部对齐'],['center','垂直居中'],['bottom','底部对齐']]);
+  slider('上下微调', 'pageOffsetY', -50, 50, 2, 'px');
+  slider('信息到内容间距', 'headerGap', 0, 40, 2, 'px');
+
   body.appendChild(h('h3', { className:'sh' }, '标题底色'));
   toggle('显示底色', 'titleBg');
   if (s.titleBg) {
@@ -1468,12 +1672,24 @@ function renderStyle() {
       select('符号', 'itemBulletSymbol', [['•','圆点'],['●','实心圆'],['▪','小方块'],['■','方块'],['◆','实心菱'],['➤','箭头'],['✦','星形']]);
     }
   }
+  slider('正文行间距', 'bodyLineHeight', 1, 3, 0.1, '');
+
+  body.appendChild(h('h3', { className:'sh', style:{ marginTop:'16px' } }, '基本信息'));
+  toggle('横向布局', 'infoHorizontal');
+  toggle('姓名下横线', 'nameDividerShow');
+  select('姓名意向对齐', 'nameTitleAlign', [['baseline','底部对齐'],['center','中心对齐']]);
+  slider('姓名意向间距', 'nameTitleGap', 0, 30, 1, 'px');
+  slider('姓名到横线间距', 'nameDividerGap', 0, 20, 1, 'px');
+  slider('联系方式列间距', 'contactColGap', -100, 40, 2, 'px');
+  slider('联系方式行间距', 'contactRowGap', 0, 40, 2, 'px');
+  slider('底部到横线间距', 'headerBottomGap', 0, 20, 1, 'px');
 
   body.appendChild(h('h3', { className:'sh', style:{ marginTop:'16px' } }, '照片设置'));
-  slider('照片宽度', 'photoWidth', 40, 160, 2, 'px', function(v) { if (s.photoLockRatio && s._photoRatio) { s.photoHeight = Math.round(v / s._photoRatio); } });
-  slider('照片高度', 'photoHeight', 40, 200, 2, 'px', function(v) { if (s.photoLockRatio && s._photoRatio) { s.photoWidth = Math.round(v * s._photoRatio); } });
+  select('照片对齐', 'photoAlign', [['top','置顶'],['center','居中'],['bottom','置底']]);
+  slider('照片宽度', 'photoWidth', 15, 45, 1, 'mm', function(v) { if (s.photoLockRatio && s._photoRatio) { s.photoHeight = Math.round(v / s._photoRatio); } });
+  slider('照片高度', 'photoHeight', 15, 55, 1, 'mm', function(v) { if (s.photoLockRatio && s._photoRatio) { s.photoWidth = Math.round(v * s._photoRatio); } });
   toggle('锁定宽高比', 'photoLockRatio');
-  if (!s._photoRatio) s._photoRatio = (s.photoWidth || 80) / (s.photoHeight || 100);
+  if (!s._photoRatio) s._photoRatio = (s.photoWidth || 21) / (s.photoHeight || 26);
   slider('水平偏移', 'photoOffsetX', -50, 50, 1, 'px');
   slider('垂直偏移', 'photoOffsetY', -50, 50, 1, 'px');
 }
