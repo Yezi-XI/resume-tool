@@ -77,6 +77,10 @@ input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(
 
 .sec-spacing-cfg{display:flex;gap:8px;padding:6px 10px;margin-top:4px;background:var(--bg);border-radius:4px;align-items:center}.sec-spacing-cfg label{font-size:11px;color:var(--t2);white-space:nowrap}.sec-spacing-inp{width:52px;padding:2px 6px;border:1px solid var(--border);border-radius:3px;font-size:11px;text-align:center}.abtn{display:flex;align-items:center;justify-content:center;gap:4px;width:100%;padding:6px;margin-top:4px;font-size:12px;color:var(--t3);background:none;border:1px dashed var(--border);border-radius:var(--r)}
 .abtn:hover{color:var(--accent);border-color:var(--accent)}
+.sc-delbar{display:flex;justify-content:flex-end;padding:2px 12px 10px}
+.del-sec-btn{display:inline-flex;align-items:center;gap:4px;padding:5px 12px;font-size:12px;color:var(--t3);background:none;border:1px solid var(--border);border-radius:5px;cursor:pointer}
+.del-sec-btn:hover{color:var(--danger);border-color:var(--danger);background:var(--ds)}
+.del-sec-btn svg{width:14px;height:14px}
 .asbtn{display:flex;align-items:center;gap:6px;width:100%;padding:10px;font-size:13px;color:var(--t2);background:none;border:1px dashed var(--border);border-radius:var(--r);margin-bottom:6px}
 .asbtn:hover{color:var(--accent);border-color:var(--accent)}
 
@@ -107,9 +111,12 @@ input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(
 .badge{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--as);color:var(--accent);font-weight:500}
 .ebtn{display:flex;align-items:center;gap:6px;padding:6px 14px;font-size:13px;font-weight:500;border-radius:var(--r);background:var(--accent);color:#fff}
 .ebtn:hover{background:var(--ah)}
-.pc{flex:1;display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:24px}
+.pc{flex:1;display:flex;align-items:safe flex-start;justify-content:safe center;overflow:auto;padding:24px;cursor:grab}
+.pc.grabbing{cursor:grabbing;user-select:none}
 
-.pview{width:210mm;min-height:297mm;padding:15mm 18mm;background:#fff;font-family:'PingFang SC','Microsoft YaHei',sans-serif;box-shadow:0 1px 4px rgba(0,0,0,.15);display:flex;flex-direction:column}
+.pview{position:relative;width:210mm;height:297mm;overflow:hidden;padding:15mm 18mm;background:#fff;font-family:'PingFang SC','Microsoft YaHei',sans-serif;box-shadow:0 1px 4px rgba(0,0,0,.15);display:flex;flex-direction:column}
+.pview>*{flex-shrink:0}
+.pview::after{content:'';position:absolute;left:0;right:0;bottom:0;height:15mm;background:#fff;pointer-events:none;z-index:20}
 .pname{font-weight:700}
 .ptitle{color:#555}
 .pname-row{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
@@ -125,9 +132,10 @@ input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(
 .pisub{color:#555}
 .pidate{font-size:9pt;color:#888;white-space:nowrap}
 .pidesc{color:#444}
-.plead{margin-bottom:2px}
+.plead{margin-bottom:2px;text-align:justify;text-justify:inter-ideograph}
 .plead-text{font-weight:700}
 .plead-desc{color:#444}
+.pidesc{text-align:justify;text-justify:inter-ideograph}
 
 
 .photo-upload{display:flex;flex-direction:column;gap:10px}
@@ -148,7 +156,7 @@ input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(
 .style-select{font-size:12px;padding:3px 6px;border:1px solid var(--border);border-radius:var(--r);background:var(--surface);color:var(--text)}
 .toggle-btn{padding:3px 12px;font-size:11px;font-weight:600;border-radius:10px;background:var(--bg);color:var(--t3);min-width:44px;text-align:center}
 .toggle-btn.on{background:var(--accent);color:#fff}.style-slider{-webkit-appearance:none;appearance:none;height:6px;background:var(--border);border-radius:3px;outline:none}.style-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.2)}.a4check-overlay{position:fixed;inset:0;background:rgba(0,0,0,.42);display:flex;align-items:center;justify-content:center;z-index:999}.a4check-modal{background:var(--surface);border-radius:12px;width:440px;max-width:92vw;max-height:82vh;overflow:auto;box-shadow:0 12px 44px rgba(0,0,0,.28);animation:a4pop .18s ease}.a4check-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);font-weight:600;font-size:14px}.a4check-close{border:none;background:none;font-size:20px;color:var(--t3);cursor:pointer;line-height:1}.a4check-close:hover{color:var(--text)}.a4check-body{padding:16px 18px}.a4check-status{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:10px 12px;border-radius:8px;margin-bottom:12px}.a4check-status.ok{background:#ecfdf5;color:#047857}.a4check-status.warn{background:var(--ds);color:var(--danger)}.a4check-meta{font-size:13px;color:var(--t2);margin-bottom:10px;line-height:1.7}.a4check-issues{list-style:none;margin:0;padding:0}.a4check-issues li{font-size:13px;color:#8a5a00;padding:7px 10px;border-left:3px solid #f59e0b;background:#fffbeb;border-radius:5px;margin-bottom:6px;line-height:1.55}.a4check-okbox{font-size:13px;color:#047857;padding:7px 10px;border-left:3px solid #10b981;background:#ecfdf5;border-radius:5px;line-height:1.55}@keyframes a4pop{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
-@page{size:A4;margin:0}@media print{body{background:#fff}.app{display:block}.side,.ptb,.zoom-ctrl{display:none!important}.main{background:#fff;overflow:visible}.pc{padding:0;overflow:visible}.pview{box-shadow:none!important;transform:none!important;width:210mm;min-height:297mm;padding:15mm 18mm;margin:0}.psec,.pitem{break-inside:avoid;page-break-inside:avoid}}
+@page{size:A4;margin:0}@media print{body{background:#fff}.app{display:block}.side,.ptb,.zoom-ctrl{display:none!important}.main{background:#fff;overflow:visible}.pc{padding:0;overflow:visible}.pview{box-shadow:none!important;transform:none!important;zoom:1!important;width:210mm;height:297mm;overflow:hidden;padding:15mm 18mm;margin:0}.psec,.pitem{break-inside:avoid;page-break-inside:avoid}}
 </style>
 </head>
 <body data-page-node-id="n6x09zf1tcdOpvG4gwHZMj">
@@ -236,6 +244,18 @@ const TYPE_OPTS = ['education','practical_experience','projects','campus_experie
 let nextId = 100;
 function uid() { return 'id-' + (nextId++) + '-' + Date.now().toString(36); }
 function newItem(ov) { return { id:uid(), title:'', subtitle:'', startDate:'', endDate:'', lead:'', description:'', courses:[], extraLeads:[], points:[], ...ov }; }
+// 文本是否有真实内容（空串、纯空格/换行都视为「空」，避免渲染出占位的空行/空块）
+function hasText(v) { return v != null && String(v).trim() !== ''; }
+// 判断条目是否有任何可见内容（用于渲染时跳过空条目，避免其 itemGap 泄漏进模块间距）
+function itemHasContent(item, secType) {
+  if (!item) return false;
+  if (hasText(item.title) || hasText(item.subtitle) || hasText(item.startDate) || hasText(item.endDate) || hasText(item.lead) || hasText(item.description)) return true;
+  if (Array.isArray(item.courses) && item.courses.some(function(c) { return c && (c.name || c.score); })) return true;
+  if ((secType === 'education' || secType === 'honors' || secType === 'other') && Array.isArray(item.extraLeads)
+      && item.extraLeads.some(function(el) { if (!el) return false; return secType === 'honors' ? hasText(el.title) : (hasText(el.title) || hasText(el.text)); })) return true;
+  if (Array.isArray(item.points) && item.points.some(function(p) { return p && (hasText(p.lead) || hasText(p.description)); })) return true;
+  return false;
+}
 
 const DEFAULT = {
   personalInfo: { name:'', title:'', phone:'', email:'', location:'', website:'', photo:'', customFields:[] },
@@ -349,7 +369,28 @@ function fontStyle(st, prefix) {
 function zoomIn() { zoomLevel = Math.min(200, zoomLevel + 10); applyZoom(); }
 function zoomOut() { zoomLevel = Math.max(40, zoomLevel - 10); applyZoom(); }
 function zoomReset() { zoomLevel = 100; applyZoom(); }
-function applyZoom() { const pv = document.getElementById('resume-preview'); if (pv) { pv.style.transform = 'scale(' + (zoomLevel/100) + ')'; pv.style.transformOrigin = 'top center'; } const zv = document.getElementById('zoom-val'); if (zv) zv.textContent = zoomLevel + '%'; }
+function applyZoom() { const pv = document.getElementById('resume-preview'); if (pv) { pv.style.zoom = zoomLevel + '%'; pv.style.transform = ''; pv.style.transformOrigin = ''; } const zv = document.getElementById('zoom-val'); if (zv) zv.textContent = zoomLevel + '%'; }
+
+// 预览抓手：在预览区按住左键拖动即可平移画面（缩放放大后也能拖到任意位置看到完整页面）
+function setupPreviewPan() {
+  const pc = document.getElementById('preview-container');
+  if (!pc || pc._panBound) return;
+  pc._panBound = true;
+  let panning = false, sx = 0, sy = 0, sl = 0, stp = 0;
+  pc.addEventListener('mousedown', function(e) {
+    if (e.button !== 0) return;
+    if (e.target.closest && e.target.closest('.zoom-ctrl')) return;
+    panning = true; sx = e.clientX; sy = e.clientY; sl = pc.scrollLeft; stp = pc.scrollTop;
+    pc.classList.add('grabbing');
+    e.preventDefault();
+  });
+  window.addEventListener('mousemove', function(e) {
+    if (!panning) return;
+    pc.scrollLeft = sl - (e.clientX - sx);
+    pc.scrollTop = stp - (e.clientY - sy);
+  });
+  window.addEventListener('mouseup', function() { if (panning) { panning = false; pc.classList.remove('grabbing'); } });
+}
 const DENSITY_CFG = {
   compact: { fs:'9pt', lh:1.3, sg:8, ig:4, ts:'12pt', ns:'20pt' },
   normal: { fs:'10pt', lh:1.5, sg:12, ig:6, ts:'14pt', ns:'22pt' },
@@ -449,7 +490,16 @@ function getMerged() {
 // ── Render helpers ──
 function el(tag, attrs, ...children) {
   const e = document.createElement(tag);
-  if (attrs) { for (const k in attrs) { if (k.startsWith('on')) e.addEventListener(k.slice(2), attrs[k]); else if (k === 'style' && typeof attrs[k] === 'object') Object.assign(e.style, attrs[k]); else if (k === 'className') e.className = attrs[k]; else if (k === 'innerHTML') e.innerHTML = attrs[k]; else e.setAttribute(k, attrs[k]); } }
+  if (attrs) { for (const k in attrs) { const v = attrs[k];
+    // 值为 false / null 的属性直接跳过：否则 setAttribute('disabled', false) 会写出
+    // disabled="false"，而 HTML 中只要 disabled 属性存在按钮就被禁用（曾导致上下移按钮全灰）。
+    if (k.startsWith('on')) { if (typeof v === 'function') e.addEventListener(k.slice(2), v); }
+    else if (v === false || v == null) { /* skip */ }
+    else if (k === 'style' && typeof v === 'object') Object.assign(e.style, v);
+    else if (k === 'className') e.className = v;
+    else if (k === 'innerHTML') e.innerHTML = v;
+    else e.setAttribute(k, v);
+  } }
   for (const c of children) { if (c == null) continue; if (typeof c === 'string') { if (c.startsWith('<')) { const span = document.createElement('span'); span.style.display='inline-flex'; span.style.alignItems='center'; span.innerHTML = c; e.appendChild(span); } else e.appendChild(document.createTextNode(c)); } else e.appendChild(c); }
   return e;
 }
@@ -527,6 +577,169 @@ function renderInfo() {
   body.appendChild(photoArea);
 }
 
+// ── 附加小标题渲染（教育背景 / 荣誉奖项 / 其他信息 共用）──
+// opts: { hasHead:boolean, parentBullet:元素段前符号|null }
+function renderExtraLeadsBlock(sec, item, opts) {
+  if (!Array.isArray(item.extraLeads) || !item.extraLeads.length) return null;
+  const hasHead = !!(opts && opts.hasHead);
+  const bullet = opts ? opts.parentBullet : null;
+  const elGap = item.extraLeadGap != null ? item.extraLeadGap : 10; // 0~100 份
+  const elLayout = item.extraLeadLayout === 'col' ? 'col' : (item.extraLeadLayout === 'two' ? 'two' : 'row');
+  // 附加小标题上间距：有头部行(标题/副标题/时间)时与「标题→正文」一致；无头部行时紧贴、不留空位
+  const headGapPx = hasHead ? (state.contentTitleDescGap || 2) : 0;
+  const extraBulletMode = item.extraLeadBullet || '';
+  const wantBullet = (function() {
+    if (extraBulletMode === 'none') return false;
+    if (extraBulletMode === 'symbol' || extraBulletMode === 'icon') return true;
+    return !!bullet; // 跟随条目
+  })();
+  const bulletColor = item.bulletColor != null ? item.bulletColor : (styleSettings.itemBulletColor || '#1a1a1a');
+  const bulletGap = ((item.bulletGap != null ? item.bulletGap : styleSettings.itemBulletGap) || 4) + 'px';
+  const makeBullet = function() {
+    if (!wantBullet) return null;
+    return extraLeadBulletSpan(item, bulletColor, bulletGap);
+  };
+
+  if (elLayout === 'col') {
+    const extraWrap = h('div', { style:{ marginBottom:'2px', marginTop: headGapPx + 'px' } });
+    const colRowGap = item.extraLeadRowGap != null ? item.extraLeadRowGap : 0; // 行与行纵向间距(px)
+    var colRowN = 0;
+    item.extraLeads.forEach(function(el) {
+      if (!el || (!el.title && !el.text)) return;
+      const row = h('div', { style:{ display:'flex', alignItems:'baseline', marginTop: (colRowN++ > 0 ? colRowGap : 0) + 'px' } });
+      const b = makeBullet();
+      if (b) row.appendChild(b);
+      if (el.title) {
+        let t = String(el.title);
+        if (sec.type !== 'honors' && !/[：:]$/.test(t)) t += '：';
+        const tStyle = Object.assign({ whiteSpace:'nowrap', lineHeight: styleSettings.bodyLineHeight != null ? styleSettings.bodyLineHeight : '1.5' }, fontStyle(state, 'extraLead'));
+        row.appendChild(h('span', { className:'plead-text', style: tStyle }, t));
+      }
+      if (el.text && sec.type !== 'honors') {
+        const ds = h('span', { className:'plead-desc', style:{ flex:'1', lineHeight: styleSettings.bodyLineHeight != null ? styleSettings.bodyLineHeight : '1.5' } });
+        String(el.text).split(/\n/).forEach(function(line, li) {
+          if (li > 0) ds.appendChild(document.createElement('br'));
+          ds.appendChild(renderRichText(line));
+        });
+        row.appendChild(ds);
+      }
+      extraWrap.appendChild(row);
+    });
+    return extraWrap;
+  } else if (elLayout === 'row') {
+    // 横向并排：默认按内容宽度贪心换行；若设置了「每行个数」(extraLeadCols) 则强制每行 N 个
+    // 间距 elGap(0~100)：0=条目紧贴左对齐(右侧留白)、100=两端对齐(最右端对齐右缘)、中间按比例均分列间隙
+    const rowGapPx = item.extraLeadRowGap != null ? item.extraLeadRowGap : 4; // 行与行纵向间距(px)
+    const colsN = (item.extraLeadCols >= 2 && item.extraLeadCols <= 6) ? item.extraLeadCols : 0; // 0=自动
+    const useInnerRows = !!colsN;
+    const extraStyle = useInnerRows
+      ? { display:'flex', flexDirection:'column', rowGap: rowGapPx + 'px', marginBottom:'2px', marginTop: headGapPx + 'px' }
+      : { display:'flex', flexWrap:'wrap', rowGap: rowGapPx + 'px', marginBottom:'2px', marginTop: headGapPx + 'px' };
+    const extraWrap = h('div', { style: extraStyle });
+    const cols = [];
+    item.extraLeads.forEach(function(el) {
+      if (!el || (!el.title && !el.text)) return;
+      const col = h('div', { style:{ display:'flex', alignItems:'baseline', flex:'0 0 auto', minWidth:'0' } });
+      const b = makeBullet();
+      if (b) col.appendChild(b);
+      if (el.title) {
+        let t = String(el.title);
+        if (sec.type !== 'honors' && !/[：:]$/.test(t)) t += '：';
+        const tStyle = Object.assign({ whiteSpace:'nowrap', lineHeight: styleSettings.bodyLineHeight != null ? styleSettings.bodyLineHeight : '1.5' }, fontStyle(state, 'extraLead'));
+        col.appendChild(h('span', { className:'plead-text', style: tStyle }, t));
+      }
+      if (el.text && sec.type !== 'honors') {
+        const ds = h('span', { className:'plead-desc', style:{ lineHeight: styleSettings.bodyLineHeight != null ? styleSettings.bodyLineHeight : '1.5' } });
+        String(el.text).split(/\n/).forEach(function(line, li) {
+          if (li > 0) ds.appendChild(document.createElement('br'));
+          ds.appendChild(renderRichText(line));
+        });
+        col.appendChild(ds);
+      }
+      cols.push(col);
+    });
+    if (useInnerRows) {
+      // 每行固定 N 个：每个分组一个独立非换行行容器，保证恰好 N 个一行
+      for (let gi = 0; gi < cols.length; gi += colsN) {
+        const rowEl = h('div', { style:{ display:'flex', width:'100%', alignItems:'baseline' } });
+        for (let k = gi; k < Math.min(gi + colsN, cols.length); k++) rowEl.appendChild(cols[k]);
+        extraWrap.appendChild(rowEl);
+      }
+    } else {
+      cols.forEach(function(c) { extraWrap.appendChild(c); });
+    }
+    if (cols.length >= 2) {
+      const apply = function() {
+        cols.forEach(function(c) { c.style.marginRight = ''; });
+        const rows = [];
+        if (useInnerRows) {
+          Array.prototype.forEach.call(extraWrap.children, function(rowEl) {
+            const rc = Array.prototype.slice.call(rowEl.children);
+            if (rc.length >= 2) rows.push({ W: rowEl.clientWidth, cols: rc });
+          });
+        } else {
+          cols.forEach(function(c) {
+            const t = c.offsetTop;
+            let r = null;
+            for (let i = 0; i < rows.length; i++) { if (Math.abs(rows[i].top - t) < 2) { r = rows[i]; break; } }
+            if (!r) { r = { top: t, W: extraWrap.clientWidth, cols: [] }; rows.push(r); }
+            r.cols.push(c);
+          });
+        }
+        rows.forEach(function(r) {
+          const n = r.cols.length;
+          if (n < 2) return;
+          let total = 0;
+          r.cols.forEach(function(c) { total += c.offsetWidth; });
+          const free = Math.max(0, r.W - total);
+          const per = free * (elGap / 100) / (n - 1);
+          // 1px 安全余量：避免 elGap=100 时最右项因亚像素溢出被换行
+          const maxPer = (free - 0.5) / (n - 1);
+          const finalPer = Math.min(per, maxPer);
+          r.cols.forEach(function(c, i) { c.style.marginRight = (i < n - 1) ? finalPer + 'px' : ''; });
+        });
+      };
+      apply();
+      requestAnimationFrame(apply);
+      extraWrap._applyExtraGap = apply;
+      if (!extraWrap._resizeBound) {
+        extraWrap._resizeBound = true;
+        window.addEventListener('resize', function() { if (extraWrap._applyExtraGap) extraWrap._applyExtraGap(); });
+      }
+    }
+    return extraWrap;
+  } else if (elLayout === 'two') {
+    // 两列对齐：一行放两个，左右两端对齐（左列靠左、右列靠右），逐行向下
+    const gapPx = Math.round((elGap / 100) * 40); // 中缝 0~40px
+    const rowGapPx = item.extraLeadRowGap != null ? item.extraLeadRowGap : 4; // 行与行纵向间距(px)
+    const extraWrap = h('div', { style:{ display:'grid', gridTemplateColumns:'1fr 1fr', columnGap: gapPx + 'px', rowGap: rowGapPx + 'px', marginBottom:'2px', marginTop: headGapPx + 'px' } });
+    item.extraLeads.forEach(function(el, i) {
+      if (!el || (!el.title && !el.text)) return;
+      const right = (i % 2 === 1);
+      const cell = h('div', { style:{ display:'flex', alignItems:'baseline', justifyContent: right ? 'flex-end' : 'flex-start', minWidth:'0' } });
+      const b = makeBullet();
+      if (b) cell.appendChild(b);
+      if (el.title) {
+        let t = String(el.title);
+        if (sec.type !== 'honors' && !/[：:]$/.test(t)) t += '：';
+        const tStyle = Object.assign({ whiteSpace:'nowrap', lineHeight: styleSettings.bodyLineHeight != null ? styleSettings.bodyLineHeight : '1.5' }, fontStyle(state, 'extraLead'));
+        cell.appendChild(h('span', { className:'plead-text', style: tStyle }, t));
+      }
+      if (el.text && sec.type !== 'honors') {
+        const ds = h('span', { className:'plead-desc', style:{ lineHeight: styleSettings.bodyLineHeight != null ? styleSettings.bodyLineHeight : '1.5' } });
+        String(el.text).split(/\n/).forEach(function(line, li) {
+          if (li > 0) ds.appendChild(document.createElement('br'));
+          ds.appendChild(renderRichText(line));
+        });
+        cell.appendChild(ds);
+      }
+      extraWrap.appendChild(cell);
+    });
+    return extraWrap;
+  }
+  return null;
+}
+
 // ── Editor: Item ──
 function renderItem(item, idx, total, sectionType, sectionId) {
   const fields = FIELDS[sectionType] || FIELDS.other;
@@ -546,8 +759,8 @@ function renderItem(item, idx, total, sectionType, sectionId) {
     // 教育背景「正文内容」字段：段落模式（coursesAsTable===false）下课程文本已复用 description，
     // 此时隐藏该独立字段，避免两个输入框写同一字段互相覆盖
     if (sectionType === 'education' && f.key === 'description' && item.coursesAsTable === false) return;
-    // 附加小标题（仅教育背景）：排在「总起小标题」字段上方；每个小标题占一行（标题+内容纵向排列）
-    if (sectionType === 'education' && f.key === 'lead') {
+    // 附加小标题（教育背景 / 荣誉奖项）：排在「总起小标题」字段上方；每个小标题占一行（标题+内容纵向排列）
+    if ((sectionType === 'education' || sectionType === 'honors' || sectionType === 'other') && f.key === 'lead') {
       if (!Array.isArray(item.extraLeads)) item.extraLeads = [];
       const elGrp = h('div', { className:'fg', style:{ marginBottom:'6px' } });
       const elHead = h('div', { style:{ display:'flex', alignItems:'center', justifyContent:'space-between' } });
@@ -573,10 +786,29 @@ function renderItem(item, idx, total, sectionType, sectionId) {
       // 排列方式
       const layoutWrap = h('div', { style:{ display:'flex', alignItems:'center', gap:'4px' } });
       layoutWrap.appendChild(h('label', { style:{ fontSize:'11px', color:'var(--t2)' } }, '排列'));
-      const layoutSel = h('select', { style:{ fontSize:'11px', padding:'1px 4px', border:'1px solid var(--border)', borderRadius:'3px' }, onchange:function(e) { item.extraLeadLayout = e.target.value; save(); renderPreview(); } });
-      [['row','横向并排'],['col','纵向排列']].forEach(function(o) { var opt = h('option', { value:o[0] }, o[1]); if ((item.extraLeadLayout || 'row') === o[0]) opt.selected = true; layoutSel.appendChild(opt); });
+      const layoutSel = h('select', { style:{ fontSize:'11px', padding:'1px 4px', border:'1px solid var(--border)', borderRadius:'3px' }, onchange:function(e) { item.extraLeadLayout = e.target.value; save(); renderPreview(); renderSections(); } });
+      [['row','横向并排'],['col','纵向排列'],['two','两列对齐']].forEach(function(o) { var opt = h('option', { value:o[0] }, o[1]); if ((item.extraLeadLayout || 'row') === o[0]) opt.selected = true; layoutSel.appendChild(opt); });
       layoutWrap.appendChild(layoutSel);
       optRow.appendChild(layoutWrap);
+      // 每行个数（仅「横向并排」布局）：自动=按内容宽度贪心换行；2~6=强制每行放 N 个、自动均分
+      if ((item.extraLeadLayout || 'row') === 'row') {
+        const perRowWrap = h('div', { style:{ display:'flex', alignItems:'center', gap:'4px' } });
+        perRowWrap.appendChild(h('label', { style:{ fontSize:'11px', color:'var(--t2)' } }, '每行'));
+        const perRowSel = h('select', { style:{ fontSize:'11px', padding:'1px 4px', border:'1px solid var(--border)', borderRadius:'3px' }, onchange:function(e) { item.extraLeadCols = (e.target.value === '' || e.target.value === 'auto') ? null : parseInt(e.target.value, 10); save(); renderPreview(); renderSections(); } });
+        [['','自动'],['2','2'],['3','3'],['4','4'],['5','5'],['6','6']].forEach(function(o) { var opt = h('option', { value:o[0] }, o[1]); if ((item.extraLeadCols == null ? '' : String(item.extraLeadCols)) === o[0]) opt.selected = true; perRowSel.appendChild(opt); });
+        perRowWrap.appendChild(perRowSel);
+        optRow.appendChild(perRowWrap);
+      }
+      // 纵向间距（控制小标题行与行之间的距离）：纵向排列=行距；横向并排/两列对齐=换行后的行距
+      {
+        const rgWrap = h('div', { style:{ display:'flex', alignItems:'center', gap:'4px' } });
+        rgWrap.appendChild(h('label', { style:{ fontSize:'11px', color:'var(--t2)' } }, '纵向间距'));
+        const rgDef = item.extraLeadLayout === 'col' ? 0 : 4;
+        const rgInp = h('input', { className:'sec-spacing-inp', type:'number', value: item.extraLeadRowGap != null ? item.extraLeadRowGap : rgDef, min:'0', max:'40', step:'1', style:{ width:'52px' }, oninput:function(e) { var v = parseFloat(e.target.value); item.extraLeadRowGap = isNaN(v) ? null : v; save(); renderPreview(); } });
+        rgWrap.appendChild(rgInp);
+        rgWrap.appendChild(h('span', { style:{ fontSize:'11px', color:'var(--t2)' } }, 'px'));
+        optRow.appendChild(rgWrap);
+      }
       elGrp.appendChild(optRow);
 
       // 符号类型为「符号」或「图标」时，显示对应的子设置（字符选择 / 图标选择 / 大小）
@@ -604,9 +836,20 @@ function renderItem(item, idx, total, sectionType, sectionId) {
         elGrp.appendChild(subRow);
       }
 
-      // 每个小标题：标题输入框 + 内容输入框（单行，可局部加粗）
+      // 每个小标题：教育背景=标题+内容富文本；荣誉奖项=仅标题（整行长输入框，无正文）
       item.extraLeads.forEach(function(el, ei) {
         const box = h('div', { style:{ display:'flex', alignItems:'center', gap:'6px', marginTop:'6px' } });
+        const delBtn = h('button', { className:'ib danger', title:'删除', style:{ width:'28px', flexShrink:'0' }, onclick:function() {
+          item.extraLeads.splice(ei, 1);
+          save(); renderPreview();
+          const fresh = renderItem(item, idx, total, sectionType, sectionId);
+          card.replaceWith(fresh);
+        } }, I.trash);
+        if (sectionType === 'honors') {
+          const tInp = h('input', { className:'fi', placeholder:'小标题', value:el.title || '', style:{ flex:'1', minWidth:'0' }, oninput:function(e) { el.title = e.target.value; save(); renderPreview(); } });
+          box.appendChild(tInp);
+          box.appendChild(delBtn);
+        } else {
         const tInp = h('input', { className:'fi', placeholder:'小标题', value:el.title || '', style:{ width:'80px', flexShrink:'0' }, oninput:function(e) { el.title = e.target.value; save(); renderPreview(); } });
         // 内容：单行富文本（外观同单行输入框，选中文字点 B 局部加粗）
         const cCol = h('div', { style:{ flex:'1', minWidth:'0', display:'flex', alignItems:'center', gap:'4px' } });
@@ -632,15 +875,10 @@ function renderItem(item, idx, total, sectionType, sectionId) {
         cCol.appendChild(ed);
         cCol.appendChild(bBtn);
         cCol.appendChild(uBtn);
-        const delBtn = h('button', { className:'ib danger', title:'删除', style:{ width:'28px', flexShrink:'0' }, onclick:function() {
-          item.extraLeads.splice(ei, 1);
-          save(); renderPreview();
-          const fresh = renderItem(item, idx, total, sectionType, sectionId);
-          card.replaceWith(fresh);
-        } }, I.trash);
         box.appendChild(tInp);
         box.appendChild(cCol);
         box.appendChild(delBtn);
+        }
         elGrp.appendChild(box);
       });
 
@@ -693,6 +931,25 @@ function renderItem(item, idx, total, sectionType, sectionId) {
         stRow.appendChild(mkStyleBtn('booktabs', '三线表'));
         stRow.appendChild(mkStyleBtn('grid', '普通表格'));
         grp.appendChild(stRow);
+
+        // 表格行高（紧凑度）调节：百分比步进，默认 100% = 当前紧凑基准
+        const rhRow = h('div', { style:{ display:'flex', alignItems:'center', gap:'8px', marginBottom:'6px' } });
+        rhRow.appendChild(h('span', { style:{ fontSize:'11px', color:'var(--t2)' } }, '表格行高'));
+        var rhVal = item.tableRowScale != null ? Math.round(item.tableRowScale * 100) : 100;
+        var rhSmall = { border:'1px solid var(--border)', background:'#f0f0f0', borderRadius:'3px', cursor:'pointer', fontSize:'12px', width:'22px', height:'22px', lineHeight:'1', padding:'0' };
+        var rhInp = h('input', { type:'number', className:'sec-spacing-inp', value: rhVal, min:'60', max:'200', step:'5', style:{ width:'56px' }, oninput:function(e) { var v = parseInt(e.target.value, 10); setRH(v); } });
+        function setRH(v) {
+          if (isNaN(v)) v = 100;
+          v = Math.max(60, Math.min(200, Math.round(v / 5) * 5));
+          item.tableRowScale = (v === 100) ? null : (v / 100);
+          rhInp.value = v;
+          save(); renderPreview();
+        }
+        rhRow.appendChild(h('button', { style: rhSmall, title:'减小 5%', onclick:function() { setRH(rhVal - 5); } }, '−'));
+        rhRow.appendChild(rhInp);
+        rhRow.appendChild(h('button', { style: rhSmall, title:'增大 5%', onclick:function() { setRH(rhVal + 5); } }, '＋'));
+        rhRow.appendChild(h('span', { style:{ fontSize:'11px', color:'var(--t3)' } }, '%'));
+        grp.appendChild(rhRow);
 
         const listWrap = h('div', { style:{ display:'flex', flexWrap:'wrap', gap:'6px' } });
         function makeChip(c, ci) {
@@ -813,10 +1070,24 @@ function renderItem(item, idx, total, sectionType, sectionId) {
     } }, I.trash);
     row1.appendChild(delBtn);
     box.appendChild(row1);
-    // 正文：单行富文本（支持局部加粗/斜体/下划线）
+    // 正文：多行富文本（支持局部加粗/斜体/下划线，选中文字后点按钮）
     const ed = h('div', { className:'ft rt-editor', contenteditable:'true', oninput:function(e) { p.description = htmlToMarkup(ed.innerHTML); save(); renderPreview(); } });
     ed.setAttribute('data-ph', '任务正文…');
     ed.innerHTML = markupToHtml(p.description || '');
+    // 富文本工具栏：B / I / U（与附加小标题按钮一致，onmousedown 防止失焦丢失选区）
+    const tipRow = h('div', { style:{ display:'flex', gap:'6px', alignItems:'center', marginTop:'4px' } });
+    const mkRich = function(cmd, label, title, deco) {
+      return h('button', { className:'bs', title:title, style:{ fontSize:'12px', padding:'0 9px', border:'1px solid var(--border)', borderRadius:'3px', cursor:'pointer', background:'#f0f0f0', fontWeight: cmd==='bold'?'700':'400', fontStyle: cmd==='italic'?'italic':'normal', textDecoration: deco||'none', flexShrink:'0', height:'24px', lineHeight:'1' }, onmousedown:function(ev){ ev.preventDefault(); }, onclick:function() {
+        ed.focus();
+        document.execCommand(cmd, false, null);
+        p.description = htmlToMarkup(ed.innerHTML);
+        save(); renderPreview();
+      } }, label);
+    };
+    tipRow.appendChild(mkRich('bold', 'B', '选中文字后点击加粗'));
+    tipRow.appendChild(mkRich('italic', 'I', '选中文字后点击斜体'));
+    tipRow.appendChild(mkRich('underline', 'U', '选中文字后点击下划线'));
+    box.appendChild(tipRow);
     box.appendChild(ed);
     ptGrp.appendChild(box);
   });
@@ -907,6 +1178,14 @@ spGlobal3.appendChild(h('label', {}, '两段经历间距'));
   const igInp = h('input', { className:'sec-spacing-inp', type:'number', value:state.itemGap != null ? state.itemGap : defIg, step:'1', min:'0', max:'30', 'data-base-key':'ig', placeholder:defIg, oninput:function(e) { var v = parseFloat(e.target.value); state.itemGap = isNaN(v) ? null : v; save(); renderPreview(); } });
  spGlobal3.appendChild(igInp);
  body.appendChild(spGlobal3);
+
+  const spGlobal4 = h('div', { className:'sec-spacing-cfg', style:{ marginBottom:'10px' } });
+ spGlobal4.appendChild(h('label', {}, '模块间距'));
+  const defSg = DENSITY_CFG[state.density].sg;
+  const sgInp = h('input', { className:'sec-spacing-inp', type:'number', value:state.sectionGap != null ? state.sectionGap : defSg, step:'1', min:'0', max:'40', 'data-base-key':'sg', placeholder:defSg, oninput:function(e) { var v = parseFloat(e.target.value); state.sectionGap = isNaN(v) ? null : v; save(); renderPreview(); } });
+  spGlobal4.appendChild(h('label', { style:{ fontSize:'10px', color:'var(--t3)' } }, '（板块与板块之间）'));
+ spGlobal4.appendChild(sgInp);
+ body.appendChild(spGlobal4);
 
   // 三态开关（默认 → 开 → 关 → 默认 循环）
   function triToggle(prefix, prop, label) {
@@ -1010,6 +1289,13 @@ const secs = state.resume.sections;
     });
     sit.appendChild(h('button', { className:'abtn', onclick:function() { addItem(sec.id); } }, I.plus, ' 添加条目'));
     card.appendChild(sit);
+    // 删除本模块：卡片底部的文字按钮（比标题栏角落里的小图标更容易发现），带二次确认防误删
+    var delBar = h('div', { className:'sc-delbar' });
+    delBar.appendChild(h('button', { className:'del-sec-btn', title:'删除本模块', onclick:function() {
+      var nm = sec.title || SECTION_LABELS[sec.type] || '该模块';
+      if (window.confirm('确定删除「' + nm + '」模块吗？此操作不可撤销。')) removeSection(sec.id);
+    } }, I.trash, ' 删除模块'));
+    card.appendChild(delBar);
     body.appendChild(card);
     bindDragSort(card, sec.id);
   });
@@ -1408,7 +1694,7 @@ function renderDescBlock(text, bulletSpan, extraStyle) {
     attrs.style = extraStyle;
   }
   var d = h('div', attrs);
-  if (!text) return d;
+  if (!hasText(text)) return d;
   var lines = String(text).split(/\n/);
   if (bulletSpan) {
     var row = h('div', { style:{ display:'flex', alignItems:'flex-start' } });
@@ -1471,16 +1757,17 @@ function extraLeadBulletSpan(item, color, gap) {
 // ── 总起小标题渲染（段前符号 + "xx：" + 正文同行）──
 function renderLeadBlock(lead, bulletSpan, descText, autoColon) {
   var div = h('div', { className:'plead' });
-  if (!lead && !descText) return div;
-  var txt = lead ? String(lead) : '';
+  if (!hasText(lead) && !hasText(descText)) return div;
+  var txt = hasText(lead) ? String(lead) : '';
   // 若未以中文冒号/英文冒号结尾，自动补一个「：」（autoColon===false 时不补，用于教育背景）
   if (txt && autoColon !== false && !/[：:]$/.test(txt)) txt += '：';
   var st = fontStyle(state, 'lead');
-  var row = h('div', { style:{ display:'flex', alignItems:'flex-start' } });
-  if (bulletSpan) row.appendChild(bulletSpan);
-  if (txt) row.appendChild(h('span', { className:'plead-text', style: st }, txt));
+  // 普通段落：bullet + 小标题(加粗) + 正文 内联在同一块；正文换行后回到最左，
+  // 而不是整体缩进到小标题右侧（小标题形如段落开头几个加粗字）。
+  if (bulletSpan) div.appendChild(bulletSpan);
+  if (txt) div.appendChild(h('span', { className:'plead-text', style: st }, txt));
   if (descText) {
-    var dsStyle = { flex:'1' };
+    var dsStyle = {};
     if (styleSettings.bodyLineHeight != null) dsStyle.lineHeight = styleSettings.bodyLineHeight;
     var ds = h('span', { className:'plead-desc', style: dsStyle });
     String(descText).split(/\n/).forEach(function(line, i) {
@@ -1488,14 +1775,13 @@ function renderLeadBlock(lead, bulletSpan, descText, autoColon) {
       if (i > 0) ds.appendChild(document.createElement('br'));
       ds.appendChild(renderRichText(line));
     });
-    row.appendChild(ds);
+    div.appendChild(ds);
   }
-  div.appendChild(row);
   return div;
 }
 // ── 主修课程成绩表格渲染（教育背景专用，课程名称 + 成绩）──
 function renderCoursesTable(item, bulletSpan, descText) {
-  const div = h('div', { className:'plead' });
+  const div = h('div', { className:'plead', style:{ marginBottom:'0' } });
   const courses = (Array.isArray(item.courses) ? item.courses : []).filter(function(c) { return c && (c.name || c.score); });
   if (!courses.length && !descText) return div;
 
@@ -1512,11 +1798,14 @@ function renderCoursesTable(item, bulletSpan, descText) {
   // 课程列表：真实表格呈现，支持「三线表 / 普通表格」两种样式
   if (courses.length) {
   const style = item.courseTableStyle === 'grid' ? 'grid' : 'booktabs';
+  const rs = item.tableRowScale != null ? item.tableRowScale : 1; // 表格行高比例（默认 1 = 当前紧凑基准）
+  const vpad = function(base) { return Math.max(0, +(base * rs).toFixed(2)) + 'px'; };
+  const lh = (1.05 * rs).toFixed(3);
   const cells = courses.map(function(c) {
     return { name: c.name || '', score: c.score || '' };
   });
 
-  const tbl = h('table', { className:'pcourses', style:{ borderCollapse:'collapse', marginTop:'2px', fontSize:'inherit' } });
+  const tbl = h('table', { className:'pcourses', style:{ borderCollapse:'collapse', marginTop:'1px', fontSize:'0.9em', lineHeight: lh } });
   const tbody = h('tbody');
 
   if (style === 'grid') {
@@ -1532,8 +1821,8 @@ function renderCoursesTable(item, bulletSpan, descText) {
     const list = cells.slice();
     while (list.length % COLS !== 0) list.push({ name:'', score:'' });
     tbl.style.tableLayout = 'auto';
-    const nameCellStyle = { padding:'3px 6px', textAlign:'center', verticalAlign:'middle', whiteSpace:'nowrap', fontWeight: gridNameW };
-    const scoreCellStyle = { padding:'3px 6px', textAlign:'center', verticalAlign:'middle', whiteSpace:'nowrap', fontWeight: gridScoreW };
+    const nameCellStyle = { padding: vpad(1) + ' 5px', textAlign:'center', verticalAlign:'middle', whiteSpace:'nowrap', fontWeight: gridNameW };
+    const scoreCellStyle = { padding: vpad(1) + ' 5px', textAlign:'center', verticalAlign:'middle', whiteSpace:'nowrap', fontWeight: gridScoreW };
     for (let i = 0; i < list.length; i += COLS) {
       const tr = h('tr');
       for (let j = 0; j < COLS; j++) {
@@ -1562,8 +1851,8 @@ function renderCoursesTable(item, bulletSpan, descText) {
       rowsArr.push(list.slice(i, i + PER_ROW));
     }
 
-    const nameStyle = { padding:'3px 8px 1px', verticalAlign:'bottom', whiteSpace:'nowrap', fontWeight: btNameW, textAlign:'center' };
-    const scoreStyle = { padding:'1px 8px 3px', verticalAlign:'top', whiteSpace:'nowrap', fontWeight: btScoreW, textAlign:'center' };
+    const nameStyle = { padding: vpad(1.5) + ' 6px 0', verticalAlign:'bottom', whiteSpace:'nowrap', fontWeight: btNameW, textAlign:'center', lineHeight: lh };
+    const scoreStyle = { padding: '0 6px ' + vpad(1.5), verticalAlign:'top', whiteSpace:'nowrap', fontWeight: btScoreW, textAlign:'center', lineHeight: lh };
 
     rowsArr.forEach(function(rowCells, ri) {
       const n = rowCells.length;
@@ -1595,7 +1884,7 @@ function renderCoursesTable(item, bulletSpan, descText) {
     });
   }
 
-  const tblWrap = h('div', { style:{ marginTop:'2px' } });
+  const tblWrap = h('div', { style:{ marginTop:'1px' } });
   tblWrap.appendChild(tbl);
   div.appendChild(tblWrap);
   }
@@ -1882,7 +2171,7 @@ function renderPreview() {
 
   // Sections
   sections.forEach(function(sec) {
-       const secStyle = { marginBottom: cfg.sg + 'px' };
+       const secStyle = { marginBottom: (state.sectionGap != null ? state.sectionGap : cfg.sg) + 'px' };
    const sdiv = h('div', { className:'psec', style: secStyle });
     const ss = styleSettings;
     const titleFontSize = ss.titleFontSize != null ? ss.titleFontSize + 'pt' : cfg.ts;
@@ -2042,23 +2331,54 @@ function renderPreview() {
      }
    }
 
-   sdiv.appendChild(h('div', { style: { height: gap + 'px' } }));
+   // 只渲染「有内容」的条目：空条目（点过添加却没填）自身的 itemGap 会泄漏进
+   // 模块底部间距，导致「荣誉奖项/其他信息」下方间距比其它模块偏大。跳过空条目并
+   // 以最后一个「有内容」的条目作为末条（marginBottom 归零）。
+   var liveItems = (sec.items || []).filter(function(it) { return itemHasContent(it, sec.type); });
+
+   // 「模块标题 → 内容」的间距：模块没有任何可见内容时不留这段空白，
+   // 否则空的荣誉奖项/其他信息模块标题下方会多出一段空隙，看着比别的模块间距大。
+   if (liveItems.length) sdiv.appendChild(h('div', { style: { height: gap + 'px' } }));
 
    if (sec.type === 'other') {
-     sec.items.forEach(function(item) {
+     // 其他信息：左标题、右内容（总起小标题 + 正文 + 任务点）；左列宽度按该模块最长标题自适应
+     var otherTitleCols = [];
+     liveItems.forEach(function(item, idx) {
         const ig = state.itemGap != null ? state.itemGap : cfg.ig;
-        const idiv = h('div', { className:'pitem', style:{ marginBottom: ig + 'px' } });
-       if (item.title) idiv.appendChild(h('div', { className:'pititle', style: Object.assign({ marginBottom: (state.contentTitleDescGap||2) + 'px' }, fontStyle(state, 'itemTitle')) }, item.title));
-       var cnt = { n: 0 };
-       var bullet = resolveBullet(item, cnt);
-       if (item.lead) idiv.appendChild(renderLeadBlock(item.lead, bullet, item.description));
-       else if (item.description) idiv.appendChild(renderDescBlock(item.description, bullet));
-       sdiv.appendChild(idiv);
+        const isLast = idx === liveItems.length - 1;
+        const idiv = h('div', { className:'pitem', style:{ marginBottom: (isLast ? 0 : ig) + 'px', display:'flex', alignItems:'flex-start' } });
+        // 左列：标题（整条独立一列，宽度渲染后统一为最长标题宽度）；无标题时不渲染空列，避免占位空白
+        if (item.title) {
+          const lcol = h('div', { className:'pother-lcol', style:{ flex:'0 0 auto', whiteSpace:'nowrap', marginRight:'10px' } });
+          lcol.appendChild(h('span', { className:'pititle', style: fontStyle(state, 'itemTitle') }, item.title));
+          idiv.appendChild(lcol);
+          otherTitleCols.push(lcol);
+        }
+        // 右列：总起小标题 + 正文 + 任务点（向下排列、左对齐）
+        const rcol = h('div', { className:'pother-rcol', style:{ flex:'1 1 auto', minWidth:'0' } });
+        var cnt = { n: 0 };
+        var bullet = resolveBullet(item, cnt);
+        if (item.lead) rcol.appendChild(renderLeadBlock(item.lead, bullet, item.description));
+        else if (item.description) rcol.appendChild(renderDescBlock(item.description, bullet));
+        (item.points || []).forEach(function(p) {
+          if (!p || (!p.lead && !p.description)) return;
+          var pb = resolveBullet(item, cnt);
+          if (p.lead) rcol.appendChild(renderLeadBlock(p.lead, pb, p.description));
+          else if (p.description) rcol.appendChild(renderDescBlock(p.description, pb, { marginTop: (state.contentTitleDescGap||2) + 'px' }));
+        });
+        // 其他信息：右列也支持「附加小标题」（标题+内容，带横向/纵向/两列排列与纵向间距）
+        {
+          const oew = renderExtraLeadsBlock(sec, item, { hasHead: !!item.title, parentBullet: bullet });
+          if (oew) rcol.appendChild(oew);
+        }
+        idiv.appendChild(rcol);
+        sdiv.appendChild(idiv);
      });
-   } else {
-     sec.items.forEach(function(item) {
-        const ig = state.itemGap != null ? state.itemGap : cfg.ig;
-        const idiv = h('div', { className:'pitem', style:{ marginBottom: ig + 'px' } });
+  } else {
+    liveItems.forEach(function(item, idx) {
+       const isLast = idx === liveItems.length - 1;
+       const ig = state.itemGap != null ? state.itemGap : cfg.ig;
+       const idiv = h('div', { className:'pitem', style:{ marginBottom: (isLast ? 0 : ig) + 'px' } });
        var dateText = (item.startDate||'') + (item.startDate&&item.endDate?' - ':'') + (item.endDate||'');
        var hasDate = !!(item.startDate || item.endDate);
        var layout = (sec.headLayout != null && sec.headLayout !== '') ? sec.headLayout : (state.itemHeadLayout || 'cab');
@@ -2072,13 +2392,15 @@ function renderPreview() {
        var subEl = h('span', { className:'pisub', style: subSt }, item.subtitle);
        var dateEl = h('span', { className:'pidate', style: dateSt }, dateText);
 
+       // 头部行（标题/副标题/时间）全空时不渲染占位行，避免那行 .pihead 的 margin 撑出多余间距
+       var hasHead = hasDate || !!item.title || !!item.subtitle;
        if (layout === 'abc') {
          // 标题左 | 副标题中 | 时间右（同一行）
          var ihd = h('div', { className:'pihead' });
          if (item.title) ihd.appendChild(h('span', { style:{ textAlign:'left' } }, h('span', { className:'pititle', style: titleSt }, item.title)));
          if (item.subtitle) ihd.appendChild(h('span', { style:{ textAlign:'center' } }, h('span', { className:'pisub', style: subSt }, item.subtitle)));
          if (hasDate) ihd.appendChild(h('span', { style:{ textAlign:'right' } }, dateEl));
-         idiv.appendChild(ihd);
+         if (hasHead) idiv.appendChild(ihd);
        } else if (layout === 'ab-c') {
          // 标题+副标题在左（中间用竖线隔开），时间在右
          var hr1 = h('div', { style:{ display:'flex', justifyContent:'space-between', alignItems:'baseline' } });
@@ -2088,126 +2410,33 @@ function renderPreview() {
          if (item.subtitle) leftWrap.appendChild(h('span', { className:'pisub', style: subSt }, item.subtitle));
          hr1.appendChild(leftWrap);
          if (hasDate) hr1.appendChild(h('span', { className:'pidate', style: dateSt, flexShrink:'0' }, dateText));
-         idiv.appendChild(hr1);
+         if (hasHead) idiv.appendChild(hr1);
        } else {
          // cab：时间左 | 标题中 | 副标题右（同一行）
          var ihd2 = h('div', { className:'pihead' });
          if (hasDate) ihd2.appendChild(h('span', { style:{ textAlign:'left' } }, dateEl));
          if (item.title) ihd2.appendChild(h('span', { style:{ textAlign:'center' } }, h('span', { className:'pititle', style: titleSt }, item.title)));
          if (item.subtitle) ihd2.appendChild(h('span', { style:{ textAlign:'right' } }, h('span', { className:'pisub', style: subSt }, item.subtitle)));
-         idiv.appendChild(ihd2);
+         if (hasHead) idiv.appendChild(ihd2);
        }
         var cnt = { n: 0 };
         var bullet = resolveBullet(item, cnt);
         // 附加小标题：独立渲染，不依赖 courses 是否有数据（用户经常需要「标题+正文」而没有课程表格）
-        if (sec.type === 'education' && Array.isArray(item.extraLeads) && item.extraLeads.length) {
-          const elGap = item.extraLeadGap != null ? item.extraLeadGap : 10; // 0~100 份
-          const elLayout = item.extraLeadLayout === 'col' ? 'col' : 'row';
-          // 附加小标题符号：none=无；symbol/icon=强制加（字符或图标）；跟随条目=条目有符号时加
-          const extraBulletMode = item.extraLeadBullet || '';
-          const wantBullet = (function() {
-            if (extraBulletMode === 'none') return false;
-            if (extraBulletMode === 'symbol' || extraBulletMode === 'icon') return true;
-            return !!bullet; // 跟随条目
-          })();
-          const bulletColor = item.bulletColor != null ? item.bulletColor : (styleSettings.itemBulletColor || '#1a1a1a');
-          const bulletGap = ((item.bulletGap != null ? item.bulletGap : styleSettings.itemBulletGap) || 4) + 'px';
-          const makeBullet = function() {
-            if (!wantBullet) return null;
-            return extraLeadBulletSpan(item, bulletColor, bulletGap);
-          };
-
-          if (elLayout === 'col') {
-            // 纵向排列：每条小标题独占一行（标题+内容横向排，段前符号可选）
-            // 标题与内容间距：教育背景里控制「标题行 → 附加小标题」的距离，
-            // 与其他模块「标题 → 正文」一致：标题行 .pihead margin-bottom 2px + marginTop(contentTitleDescGap)
-            const extraWrap = h('div', { style:{ marginBottom:'2px', marginTop: ((state.contentTitleDescGap||2) + 'px') } });
-            item.extraLeads.forEach(function(el) {
-              if (!el || (!el.title && !el.text)) return;
-              const row = h('div', { style:{ display:'flex', alignItems:'baseline' } });
-              const b = makeBullet();
-              if (b) row.appendChild(b);
-              if (el.title) {
-                let t = String(el.title);
-                if (!/[：:]$/.test(t)) t += '：';
-                const tStyle = Object.assign({ whiteSpace:'nowrap', lineHeight: styleSettings.bodyLineHeight != null ? styleSettings.bodyLineHeight : '1.5' }, fontStyle(state, 'extraLead'));
-                row.appendChild(h('span', { className:'plead-text', style: tStyle }, t));
-              }
-              if (el.text) {
-                const ds = h('span', { className:'plead-desc', style:{ flex:'1', lineHeight: styleSettings.bodyLineHeight != null ? styleSettings.bodyLineHeight : '1.5' } });
-                String(el.text).split(/\n/).forEach(function(line, li) {
-                  if (li > 0) ds.appendChild(document.createElement('br'));
-                  ds.appendChild(renderRichText(line));
-                });
-                row.appendChild(ds);
-              }
-              extraWrap.appendChild(row);
-            });
-            idiv.appendChild(extraWrap);
-          } else {
-            // 横向并排：标题 + 内容 一列，多列平分剩余空间
-            const extraStyle = { display:'flex', flexWrap:'nowrap', marginBottom:'2px', marginTop: ((state.contentTitleDescGap||2) + 'px') };
-            const extraWrap = h('div', { style: extraStyle });
-            // 先收集所有非空 col，计算实际间距（在容器里按份数平分剩余空间）
-            const cols = [];
-            item.extraLeads.forEach(function(el) {
-              if (!el || (!el.title && !el.text)) return;
-              const col = h('div', { style:{ display:'flex', alignItems:'baseline', flex:'0 0 auto', minWidth:'0' } });
-              const b = makeBullet();
-              if (b) col.appendChild(b);
-              if (el.title) {
-                let t = String(el.title);
-                if (!/[：:]$/.test(t)) t += '：';
-                const tStyle = Object.assign({ whiteSpace:'nowrap', lineHeight: styleSettings.bodyLineHeight != null ? styleSettings.bodyLineHeight : '1.5' }, fontStyle(state, 'extraLead'));
-                col.appendChild(h('span', { className:'plead-text', style: tStyle }, t));
-              }
-              if (el.text) {
-                const ds = h('span', { className:'plead-desc', style:{ lineHeight: styleSettings.bodyLineHeight != null ? styleSettings.bodyLineHeight : '1.5' } });
-                String(el.text).split(/\n/).forEach(function(line, li) {
-                  if (li > 0) ds.appendChild(document.createElement('br'));
-                  ds.appendChild(renderRichText(line));
-                });
-                col.appendChild(ds);
-              }
-              extraWrap.appendChild(col);
-              cols.push(col);
-            });
-            // 浏览器布局后测量，按份数分配间隙（剩余空间 × 份数 / (列数-1)）→ 100 份刚好两端对齐
-            if (cols.length >= 2) {
-              const apply = function() {
-                const W = extraWrap.clientWidth;
-                let totalCols = 0;
-                cols.forEach(function(c) { totalCols += c.offsetWidth; });
-                const free = Math.max(0, W - totalCols);
-                const per = free * (elGap / 100) / (cols.length - 1);
-                cols.forEach(function(c, i) {
-                  if (i < cols.length - 1) c.style.marginRight = per + 'px';
-                  else c.style.marginRight = '';
-                });
-              };
-              // 同步先尝试一次（已 appendChild，offsetWidth 可用）；并用 rAF 兜底修正
-              apply();
-              requestAnimationFrame(apply);
-              extraWrap._applyExtraGap = apply;
-              if (!extraWrap._resizeBound) {
-                extraWrap._resizeBound = true;
-                window.addEventListener('resize', function() { if (extraWrap._applyExtraGap) extraWrap._applyExtraGap(); });
-              }
-            }
-            idiv.appendChild(extraWrap);
-          }
+        {
+          const ew = renderExtraLeadsBlock(sec, item, { hasHead: hasHead, parentBullet: bullet });
+          if (ew) idiv.appendChild(ew);
         }
         if (sec.type === 'education' && item.coursesAsTable !== false && Array.isArray(item.courses) && item.courses.length) {
           idiv.appendChild(renderCoursesTable(item, bullet, item.description));
         } else if (sec.type === 'education' && item.lead) idiv.appendChild(renderLeadBlock(item.lead, bullet, item.description, false));
         else if (item.lead) idiv.appendChild(renderLeadBlock(item.lead, bullet, item.description));
-        else if (item.description) idiv.appendChild(renderDescBlock(item.description, bullet, { marginTop: (state.contentTitleDescGap||2) + 'px' }));
+        else if (hasText(item.description)) idiv.appendChild(renderDescBlock(item.description, bullet, { marginTop: (state.contentTitleDescGap||2) + 'px' }));
         // 额外任务点（总起小标题 + 正文 组合，所有板块通用；第一组即上方的 lead/description）
         (item.points || []).forEach(function(p) {
-          if (!p || (!p.lead && !p.description)) return;
+          if (!p || (!hasText(p.lead) && !hasText(p.description))) return;
           var pb = resolveBullet(item, cnt);
           if (p.lead) idiv.appendChild(renderLeadBlock(p.lead, pb, p.description));
-          else if (p.description) idiv.appendChild(renderDescBlock(p.description, pb, { marginTop: (state.contentTitleDescGap||2) + 'px' }));
+          else if (hasText(p.description)) idiv.appendChild(renderDescBlock(p.description, pb, { marginTop: (state.contentTitleDescGap||2) + 'px' }));
         });
        sdiv.appendChild(idiv);
      });
@@ -2219,6 +2448,60 @@ function renderPreview() {
   container.appendChild(pv);
   // 预览重建后重新应用缩放（缩放级别 zoomLevel 保持不变，仅 DOM 元素被替换）
   applyZoom();
+
+  // 其他信息模块：把左列标题宽度统一设为「该模块内最长标题」的宽度，实现左标题右内容的两列对齐
+  var applyOtherColWidth = function() {
+    pv.querySelectorAll('.psec').forEach(function(sec) {
+      var cols = sec.querySelectorAll('.pother-lcol');
+      if (!cols.length) return;
+      var maxW = 0;
+      cols.forEach(function(c) { c.style.width = 'auto'; });
+      cols.forEach(function(c) { var w = c.offsetWidth; if (w > maxW) maxW = w; });
+      cols.forEach(function(c) { c.style.width = maxW + 'px'; });
+    });
+  };
+  applyOtherColWidth();
+  requestAnimationFrame(applyOtherColWidth);
+
+  // 其他信息两栏：让左列「标题」与右列「总起小标题」的文字中心处于同一水平线。
+  // 两栏本是顶对齐，字号不同 → 行盒高度不同 → 中心错位。做法：取两者行盒的较大值 H，
+  // 各自补 (H - 自身行盒高)/2 的上内边距，使两行文字都垂直居中于同一高度 H，中心自然对齐。
+  var alignScale = (zoomLevel / 100) || 1;
+  pv.querySelectorAll('.psec').forEach(function(sec) {
+    sec.querySelectorAll('.pitem').forEach(function(item) {
+      var lcol = item.querySelector('.pother-lcol');
+      var rcol = item.querySelector('.pother-rcol');
+      if (!lcol || !rcol) return;
+      var ltitle = lcol.querySelector('.pititle');
+      var firstBlock = rcol.firstElementChild;
+      if (!ltitle || !firstBlock) { lcol.style.paddingTop = ''; if (firstBlock) firstBlock.style.paddingTop = ''; return; }
+      var lineEl = rcol.querySelector('.plead-text') || rcol.querySelector('.plead-desc') || rcol.querySelector('.pidesc');
+      var rects = lineEl ? lineEl.getClientRects() : null;
+      var fr = (rects && rects.length) ? rects[0] : firstBlock.getBoundingClientRect();
+      var ltH = ltitle.getBoundingClientRect().height / alignScale;  // 左列标题行盒高
+      var rtH = (fr.height || 0) / alignScale;                       // 右列第一行行盒高
+      var H = Math.max(ltH, rtH);
+      lcol.style.paddingTop = Math.round(Math.max(0, H - ltH) / 2) + 'px';
+      firstBlock.style.paddingTop = Math.round(Math.max(0, H - rtH) / 2) + 'px';
+    });
+  });
+
+  // 统一「模块底部 → 下一模块标题」的间距：清除每个模块内「最后一个可见元素」的下外边距。
+  // 以 .plead（总起小标题/附加小标题）或 .pihead（条目头部行）结尾的模块，会比以 .pidesc
+  // （描述正文）结尾的模块多出约 2px，使「荣誉奖项 → 其他信息」看着比别的模块间距大。
+  // 归零后所有模块间距严格等于「模块间距」这一设置值。
+  var clearSecTrailingMargin = function(el) {
+    var kids = Array.prototype.slice.call(el.children);
+    for (var i = kids.length - 1; i >= 0; i--) {
+      var k = kids[i];
+      if (k.offsetHeight > 0.5 && k.offsetWidth > 0.5) {
+        k.style.marginBottom = '0px';
+        clearSecTrailingMargin(k);
+        break;
+      }
+    }
+  };
+  pv.querySelectorAll('.psec').forEach(function(sec) { clearSecTrailingMargin(sec); });
 
   // 内容字间距/行间距：仅作用于内容模块的正文条目（.psec .pitem），
   // 不影响个人信息板块（.pshd）和模块标题（.pstitle 自带行高）
@@ -2252,6 +2535,9 @@ function renderPreview() {
       Object.assign(t.style, bodySt);
     });
   }
+
+  // 预览固定为 A4 一页：.pview 高 297mm + overflow:hidden，超出 A4 的内容直接裁掉、不可见；
+  // 不再绘制任何分页提示线。
 
   // Version badge
   const badge = document.getElementById('version-badge');
@@ -2300,7 +2586,7 @@ function exportPDF() {
   const mainStyle = document.querySelector('style');
   const baseCss = mainStyle ? mainStyle.textContent : '';
   const w = window.open('', '_blank', 'width=800,height=600');
-  w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>简历</title><style>' + baseCss + '\nhtml,body{margin:0;padding:0;background:#fff}\nbody{display:block}\n.pview{margin:0}\n@page{size:A4;margin:0}\n@media print{html,body{margin:0;padding:0;width:210mm}.pview{box-shadow:none!important;transform:none!important;width:210mm;min-height:297mm;height:auto;padding:15mm 18mm;margin:0}.psec,.pitem{break-inside:avoid;page-break-inside:avoid}}</style></head><body>');
+  w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>简历</title><style>' + baseCss + '\nhtml,body{margin:0;padding:0;background:#fff}\nbody{display:block}\n.pview{margin:0}\n@page{size:A4;margin:0}\n@media print{html,body{margin:0;padding:0;width:210mm}.pview{box-shadow:none!important;transform:none!important;width:210mm;height:297mm;overflow:hidden;padding:15mm 18mm;margin:0}.a4-pagebreak{display:none!important}.psec,.pitem{break-inside:avoid;page-break-inside:avoid}}</style></head><body>');
   w.document.body.appendChild(pv.cloneNode(true));
   w.document.close();
   setTimeout(function() { w.print(); }, 300);
@@ -2418,6 +2704,7 @@ initGlobalSpacing();
 renderDensity();
 switchTab('info');
 renderPreview();
+setupPreviewPan();
 
 // ── 数值输入框「默认」状态的基准增减 ──
 // 空值(默认)时按 ↑/↓ 或点步进按钮(▲/▼)：以实际默认值为基准增减一步，而不是从最小值突变。
